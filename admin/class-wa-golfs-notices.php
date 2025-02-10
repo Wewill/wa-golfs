@@ -41,35 +41,65 @@ function general_admin_notice(){
 			'icon' => 'dashicons dashicons-admin-site',
 		],
 		// Index
-		[	'allowed_pagenow' => array('index.php'),
-			'allowed_posttype' => array(),
-			'allowed_taxonomy' => array(),
-			'allowed_page' => array(),
-			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => __('Bienvenue dans le <em>Répertoire</em> des savoir-faire paysans', 'war'), 'content' => __('<strong>Nouveau ?</strong> Pour publier du contenu sur le <em>Répertoire</em>, merci de consulter préalablement le  <a href="/wp-content/plugins/wa-golfs/dist/pdf/GOLFS_Tutoriel_etre_administrateur.pdf">Tutoriel GOLFS - Être adminitrateur du site</a>.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
-			'icon' => 'dashicons dashicons-pressthis',
-		],
+		// [	'allowed_pagenow' => array('index.php'),
+		// 	'allowed_posttype' => array(),
+		// 	'allowed_taxonomy' => array(),
+		// 	'allowed_page' => array(),
+		// 	'allowed_roles' => array('administrator', 'editor', 'contributor'), 
+		// 	'title' => __('Bienvenue sur le <em>site du Golf de Salouël</em>', 'war'), 'content' => __('<strong>Nouveau ?</strong> Pour publier du contenu sur le <em>site</em>, merci de consulter préalablement le  <a href="/wp-content/plugins/wa-golfs/dist/pdf/GOLFS_Tutoriel_etre_administrateur.pdf">Tutoriel GOLFS - Être adminitrateur du site</a>.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
+		// 	'icon' => 'dashicons dashicons-pressthis',
+		// ],
 		// Post
 		[	'allowed_pagenow' => array('edit.php'),
 			'allowed_posttype' => array('post'),
 			'allowed_taxonomy' => array(),
 			'allowed_page' => array(),
 			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => '', 'content' => __('Dans cet onglet se trouve la liste des articles du site. Pour le moment cette rubrique n’est pas utilisée.', 'war'), 'class' => 'updated' ],
+			'title' => 'Articles', 'content' => __('Dans cet onglet se trouve la liste des actualités / articles du site. Il est important de <strong>catégoriser les articles</strong> et de leur <strong>ajouter des images en avant</strong>.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
+			'icon' => 'dashicons dashicons-admin-post',
+		],
+		
 		// Page
-		[	'allowed_pagenow' => array('edit.php'),
-			'allowed_posttype' => array('page'),
-			'allowed_taxonomy' => array(),
-			'allowed_page' => array(),
-			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => '', 'content' => __('Dans cet onglet se trouve la liste des pages du site. Les pages correspondent aux paragraphes présents en ligne dans la présentation du site. Les pages ne sont pas vouées à être modifiées ou ajoutées par des administrateurs de structure (autres ADEAR) sans concertation avec l’ARDEAR Grand Est.', 'war'), 'class' => 'updated' ],
+		// [	'allowed_pagenow' => array('edit.php'),
+		// 	'allowed_posttype' => array('page'),
+		// 	'allowed_taxonomy' => array(),
+		// 	'allowed_page' => array(),
+		// 	'allowed_roles' => array('administrator', 'editor', 'contributor'), 
+		// 	'title' => '', 'content' => __('Dans cet onglet se trouve la liste des pages du site.', 'war'), 'class' => 'updated' ],
 		// Medias
 		[	'allowed_pagenow' => array('upload.php'),
 			'allowed_posttype' => array('attachment'),
 			'allowed_taxonomy' => array(),
 			'allowed_page' => array(),
 			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => '', 'content' => __('Dans la bibliothèque de médias se trouvent tous les fichiers images et vidéos qui sont utilisés dans les fiches paysan, contenus du site, logotypes.', 'war'), 'class' => 'updated' ],
+			'title' => '', 'content' => __('Dans la bibliothèque de médias se trouvent <strong>tous les fichiers images et vidéos</strong> qui sont utilisés sur les contenus du site...', 'war'), 'class' => 'updated' ],
+		// Homeslide
+		[	'allowed_pagenow' => array('edit.php'),
+			'allowed_posttype' => array('homeslide'),
+			'allowed_taxonomy' => array(),
+			'allowed_page' => array(),
+			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
+			'title' => 'Homeslide', 'content' => __('Dans cet onglet se trouve la liste des diaporamas de la page d\'acceuil.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
+			'icon' => 'dashicons dashicons-images-alt2',
+		],
+		// Flash
+		[	'allowed_pagenow' => array('edit.php'),
+			'allowed_posttype' => array('flash'),
+			'allowed_taxonomy' => array(),
+			'allowed_page' => array(),
+			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
+			'title' => '⚡︎ Flash ', 'content' => __('Dans cet onglet se trouve la liste des contenu flash dans le pre-haut de page. Ils servent à afficher des informations simples à court terme.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
+			'icon' => 'dashicons dashicons-tide',
+		],
+		// Partners
+		[	'allowed_pagenow' => array('edit.php'),
+			'allowed_posttype' => array('partner'),
+			'allowed_taxonomy' => array(),
+			'allowed_page' => array(),
+			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
+			'title' => 'Partenaires ', 'content' => __('Dans cet onglet se trouve la liste des partenaires qui s\'affichent dans le pied de page ou le block partenaire.', 'war'), 'class' => 'default', 'wrapper' => 'h1',
+			'icon' => 'dashicons dashicons-groups',
+		],
 		// Commentaires
 		[	'allowed_pagenow' => array('edit-comments.php'),
 			'allowed_posttype' => array(),
@@ -113,7 +143,7 @@ function general_admin_notice(){
 	$user = wp_get_current_user();
 
 	// Color ref 
-	$default_color = '#FF735D'; // '#3a464e'
+	$default_color = '#2f4d42'; // '#3a464e'
 	$class_colors = array('default' => $default_color, 'error' => '#dc3232', 'warning' => '#ffb900', 'info' => '#2271b1', 'updated' => '#ccd0d4');//var(--wp-admin-theme-color)
 	$bg_color = 'background: rgb(251,249,246); background: linear-gradient(90deg, rgba(251,249,246,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0) 100%);'; //https://cssgradient.io
 

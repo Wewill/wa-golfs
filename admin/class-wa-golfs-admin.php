@@ -182,6 +182,7 @@ class Wa_Golfs_Admin {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-fields.php';
 		// Adding metabox io custom blocks
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-blocks.php';
+
 		// TODO
 		// Adding metabox io advanced blocks  
 		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/blocks/wa-golfs-directory-block.php';
@@ -216,9 +217,9 @@ class Wa_Golfs_Admin {
 		register_custom_meta_fields(); //admin/class-wa-golfs-fields //add_action( 'rwmb_meta_boxes', 'register_custom_meta_fields', 5);
 		// register_custom_meta_settings(); //class-wa-golfs-settings.php
 
-		// TODO REMOVE ? 
 		// Custom blocks
-		//add_action( 'rwmb_meta_boxes', 'register_blocks', 5);
+		register_custom_blocks(); // admin/class-wa-golfs-blocks.php
+		
 
 		// TODO REMOVE ? 
 		// Custom blocks
@@ -243,6 +244,16 @@ class Wa_Golfs_Admin {
 	// public function init_fields() {
 	// 	register_custom_meta_fields();
 	// }
+
+	// /**
+	//  * Plugin loaded 
+	//  *
+	//  * @since    1.1.0
+	//  */
+	// public function loaded_plugin() {
+	// 	// // TODO REMOVE ? 
+	// 	// // Custom blocks
+	// }
 	
 	/**
 	 * Init admin
@@ -253,6 +264,7 @@ class Wa_Golfs_Admin {
 		//$screen = get_current_screen(); //$screen->id
 		global $pagenow;
 
+		// Check dependencies
 		if ( !is_login() && is_admin() && !in_array( $pagenow, array( 'plugins.php' ) ) && !function_exists('rwmb_meta') ) {
 			wp_die('Error : please install Meta Box plugin.');
 		}
@@ -269,43 +281,8 @@ class Wa_Golfs_Admin {
 			wp_die('Error : please install Meta Box Text limiter plugin.');
 		}
 
-		// @TOMOVE correct place 
-		function golfs_competition_allowed_block_types( $allowed_blocks, $editor_context ) {
-			if ( isset( $editor_context->post ) && $editor_context->post->post_type === 'competition' ) {
-				return array(
-					'core/image', 
-					'core/heading', 
-					'core/paragraph', 
-					'core/list', 
-					'core/quote', 
-					'core/pullquote', 
-					'core/block', 
-					'core/button', 
-					'core/buttons', 
-					'core/column', 
-					'core/columns', 
-					'core/table', 
-					'core/text-columns', 
-					//
-					'coblocks/accordion',
-					'coblocks/accordion-item',
-					'coblocks/alert',
-					'coblocks/counter',
-					'coblocks/column',
-					'coblocks/row',
-					'coblocks/dynamic-separator',
-					'coblocks/logos',
-					'coblocks/icon',
-					'coblocks/buttons',			
-					// Remplacez ceci par l'identifiant du bloc que vous souhaitez autoriser
-					// Ajoutez d'autres identifiants de blocs au besoin
-					'directory/wa-golfs-competition-block',
-				);
-			}
-		
-			return $allowed_blocks;
-		}		
-		add_filter( 'allowed_block_types_all', 'golfs_competition_allowed_block_types', 10, 2 );
+		// Allowed blocks
+		allow_blocks(); //admin/class-wa-golfs-blocks.php
 
 
 		// Default post meta page toggle 

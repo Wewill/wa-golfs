@@ -166,6 +166,8 @@ class Wa_Golfs {
 		$this->loader->add_action( 'init', $plugin_admin, 'init_plugin' ); // Register post types 
 		// $this->loader->add_action( 'rwmb_meta_boxes', $plugin_admin, 'init_fields' ); // Register fields 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'init_admin' ); // Register admin after init 
+		// //test
+		// $this->loader->add_action( 'plugin_loaded', $plugin_admin, 'loaded_plugin' ); // Register admin after init 
 
 	}
 

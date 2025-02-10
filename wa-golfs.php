@@ -16,7 +16,7 @@
  * Plugin Name:       WA GOLFS Global functions
  * Plugin URI:        https://www.wilhemarnoldy.fr
  * Description:       A plugin to add "parcours", "compétition", testimony of "le Golf de Salouël"
- * Version:           1.0
+ * Version:           1.1
  * Author:            Wilhem Arnoldy
  * Author URI:        https://www.wilhemarnoldy.fr
  * License:           GPL-2.0+

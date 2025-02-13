@@ -7,7 +7,11 @@
 // Custom Backend Footer
 add_filter('admin_footer_text', 'admin_footer');
 function admin_footer() {
-	echo '<span id="footer-thankyou">'.__( '© GOLFS V2 — Maintenance <a href="http://www.wilhemarnoldy.fr" target="_blank">Wilhem Arnoldy, www.wilhemarnoldy.fr</a>', 'wa-golfs').'</span>';
+	$version = '';
+	if (defined('WAFF_VERSION')) {
+		echo 'WAFF V' . WAFF_VERSION . ' — ';
+	}
+	echo '<span id="footer-thankyou">'.__( '© GOLFS — ' . WAFF_VERSION . ' Maintenance <a href="http://www.wilhemarnoldy.fr" target="_blank">Wilhem Arnoldy, www.wilhemarnoldy.fr</a>', 'wa-golfs').'</span>';
 }
 
 add_action('admin_head', 'init_dev');

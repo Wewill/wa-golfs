@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              https://www.wilhemarnoldy.fr
- * @since             1.0
+ * @since             1.2
  * @package           Wa_Golfs
  *
  * @wordpress-plugin
  * Plugin Name:       WA GOLFS Global functions
  * Plugin URI:        https://www.wilhemarnoldy.fr
  * Description:       A plugin to add "parcours", "compétition", testimony of "le Golf de Salouël"
- * Version:           1.1
+ * Version:           1.2
  * Author:            Wilhem Arnoldy
  * Author URI:        https://www.wilhemarnoldy.fr
  * License:           GPL-2.0+

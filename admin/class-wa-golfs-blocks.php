@@ -51,14 +51,16 @@ function post_type_allowed_block_types( $allowed_blocks = array(), $editor_conte
 			// 'directory/wa-golfs-competition-block',
 		);
 	}
-
-	// Because the thme restrict the blocks, add here custom blocks created in plugin
-	// Add custom block
-	$allowed_blocks[] = 'directory/wa-golfs-competition-block';
-	// Add metabox.io testimony block
-	$allowed_blocks[] = 'meta-box/wa-golfs-testimony';
-	$allowed_blocks[] = 'meta-box/wa-golfs-courses';
-	$allowed_blocks[] = 'meta-box/wa-golfs-competitions';
+	
+	// Because the theme restricts the blocks, add here custom blocks created in the plugin
+	if ( isset( $editor_context->post ) && $editor_context->name !== 'core/edit-widgets' ) {
+		// Add custom block
+		$allowed_blocks[] = 'directory/wa-golfs-competition-block';
+		// Add metabox.io testimony block
+		$allowed_blocks[] = 'meta-box/wa-golfs-testimony';
+		$allowed_blocks[] = 'meta-box/wa-golfs-courses';
+		$allowed_blocks[] = 'meta-box/wa-golfs-competitions';
+	}
 
 	return $allowed_blocks;
 }		

@@ -88,3 +88,23 @@ function run_wa_golfs() {
 
 }
 run_wa_golfs();
+
+function list_all_admin_notices() {
+	add_action('admin_notices', function() {
+		global $wp_filter;
+		if ( isset( $wp_filter['admin_notices'] ) ) {
+			// Remove the specific notice
+			if ( isset( $wp_filter['admin_notices']->callbacks[10] ) ) {
+				foreach ( $wp_filter['admin_notices']->callbacks[10] as $key => $value ) {
+					if ( is_array( $value['function'] ) && is_object( $value['function'][0] ) && get_class( $value['function'][0] ) === 'MetaBox\Updater\Notification' && $value['function'][1] === 'notify' ) {
+						unset( $wp_filter['admin_notices']->callbacks[10][$key] );
+					}
+				}
+			}
+			// echo '<pre>';
+			// print_r( $wp_filter['admin_notices']->callbacks );
+			// echo '</pre>';
+		}
+	});
+}
+add_action( 'plugin_loaded', 'list_all_admin_notices' , 1000);

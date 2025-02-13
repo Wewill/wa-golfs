@@ -98,7 +98,17 @@ class Wa_Golfs_Admin {
 			wp_enqueue_style( 'admin-style-testimony', plugins_url('/css/admin-style-testimony.css',__FILE__), array(), '1.0' );
 			break;
 
-			}
+		}
+
+		// Import fullcalendar styles
+		if ( 'competitions' === get_post_type() && isset($_GET['page']) && 'competitions-calendar' === $_GET['page'] ) {
+			wp_enqueue_style(
+				'fullcalendar-css',
+				'https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css',
+				array(),
+				'3.10.2'
+			);
+		}
 	}
 
 	/**
@@ -107,6 +117,7 @@ class Wa_Golfs_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
+		global $typenow;
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -132,6 +143,23 @@ class Wa_Golfs_Admin {
 			array(), 
 			$this->version, false
 		);
+
+		// Import fullcalendar script
+		if ( 'competitions' === $typenow && (isset($_GET['page']) && 'competitions-calendar' === $_GET['page']) ) {
+			wp_enqueue_script(
+				'fullcalendar',
+				'https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js',
+				array(),
+				'6.1.15',
+				false
+			);
+			wp_enqueue_script( 
+				$this->plugin_name . '_calendar', 
+				plugin_dir_url( __FILE__ ) . 'js/wa-golfs-calendar.js', 
+				array('fullcalendar'), 
+				$this->version, false
+			);
+		}
 
 	}
 
@@ -187,6 +215,8 @@ class Wa_Golfs_Admin {
 		// Adding metabox io advanced blocks  
 		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/blocks/wa-golfs-directory-block.php';
 		
+		// Extending metabox io custom fields 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-extend.php';
 		// Manage admin columns 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-columns.php';
 		// Manage admin filter dropdowns 
@@ -199,6 +229,8 @@ class Wa_Golfs_Admin {
 		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-settings.php';
 		// Add export capabilities
 		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-export.php';
+		// Add admin pages 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-pages.php';
 	}
 
 	/**

@@ -60,3 +60,4 @@ function register_taxonomies() {
 	register_taxonomy( 'competition-category', ['competitions'], $args );
     
 }
+?>

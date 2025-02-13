@@ -131,6 +131,7 @@ add_filter( 'manage_edit-competitions_columns', 'competitions_columns' ) ;
 function competitions_columns( $columns ) {
 	$columns['c_state'] = __( 'State', 'wa-golfs');
 	$columns['c_date'] = __( 'Competition date', 'wa-golfs');
+	$columns['_c_data'] = __( 'Data', 'wa-golfs');
 	$columns['c_external_link'] = __( 'External link', 'wa-golfs');
 	return $columns;
 }
@@ -148,7 +149,7 @@ add_action("manage_competitions_posts_custom_column", 'competitions_manage_colum
 function competitions_manage_columns($column_name, $post_id) {
     switch ($column_name) {
 		case 'c_state' :
-			echo get_meta($column_name, $post_id);
+			echo get_state($column_name, $post_id);
             break;
 		case 'c_date' :
 			echo get_meta($column_name, $post_id);
@@ -156,6 +157,27 @@ function competitions_manage_columns($column_name, $post_id) {
 		case 'c_external_link' :
 			echo get_meta_link($column_name, $post_id);
             break;
+		case '_c_data' :
+			$fields = [
+				'c_competition_results_brut' => 'Résultats bruts',
+				'c_competition_results_net' => 'Résultats nets',
+				'c_competition_departures' => 'Départs'
+			];
+
+			foreach ($fields as $field => $label) {
+				$file_url = get_post_meta($post_id, $field, true);
+				if ($file_url) {
+					$file_info = pathinfo($file_url);
+					if (isset($file_info['extension']) && strtolower($file_info['extension']) === 'csv') {
+						echo '<div style="color:rgb(66, 149, 66);">' . $label . ' <span class="dashicons dashicons-yes-alt" style="color:rgb(66, 149, 66);"></span></div>';
+					} else {
+						echo '<div style="color:silver;">' . $label . ' <span class="dashicons dashicons-no-alt"></span></div>';
+					}
+				} else {
+					echo '<div style="color:silver;">' . $label . ' <span class="dashicons dashicons-no-alt"></span></div>';
+				}
+			}
+			break;	
    		default:
             break;
     }
@@ -172,6 +194,8 @@ function competitions_manage_columns($column_name, $post_id) {
 add_filter( 'manage_edit-course_columns', 'course_columns' ) ;
 function course_columns( $columns ) {
 	$columns['c_number_of_strokes'] = __( 'Number of strokes', 'wa-golfs');
+	$columns['c_handicap'] = __( 'Handicap', 'wa-golfs');
+	$columns['c_green'] = __( 'Green depth', 'wa-golfs');
 	return $columns;
 }
 
@@ -179,6 +203,8 @@ function course_columns( $columns ) {
 add_filter( 'manage_edit-course_sortable_columns', 'course_sortable_columns' );
 function course_sortable_columns( $columns ) {
 	$columns['c_number_of_strokes'] = 'c_number_of_strokes';
+	$columns['c_handicap'] = 'c_handicap';
+	$columns['c_green'] = 'c_green';
 	return $columns;
 }
 
@@ -189,6 +215,12 @@ function course_manage_columns($column_name, $post_id) {
 		case 'c_number_of_strokes' :
 			echo get_meta($column_name, $post_id);
             break;
+		case 'c_handicap' :
+			echo get_meta($column_name, $post_id);
+			break;
+		case 'c_green' :
+			echo get_meta($column_name, $post_id);
+			break;
    		default:
             break;
     }
@@ -234,408 +266,56 @@ function testimony_manage_columns($column_name, $post_id) {
 
 }
 
-// /*
-// --------------
-// * Post : directory
-// */
-
-
-// // manage_edit-{$post_type}_columns
-// add_filter( 'manage_edit-directory_columns', 'directory_columns' ) ;
-// function directory_columns( $columns ) {
-// 	$columns['_farms_id'] = __( 'Farm.s', 'wa-golfs');
-// 	$columns['_operations_id'] = __( 'Operation.s', 'wa-golfs');
-// 	$columns['_structures_id'] = __( 'Structure.s', 'wa-golfs');
-// 	return $columns;
-// }
-
-// // manage_edit-{$post_type}_sortable_columns
-// add_filter( 'manage_edit-directory_sortable_columns', 'directory_sortable_columns' );
-// function directory_sortable_columns( $columns ) {
-// 	//$columns['_golfs_belongs_directory_id'] = '_golfs_belongs_directory_id';
-// 	return $columns;
-// }
-
-// // manage_{$post_type}_posts_custom_column
-// add_action("manage_directory_posts_custom_column", 'directory_manage_columns', 10, 2);
-// function directory_manage_columns($column_name, $post_id) {
-//     switch ($column_name) {
-// 		/*case '_golfs_belongs_directory_id' :
-// 			get_directory_byfarmid($column_name, $post_id);			
-// 			break;*/
-// 		case '_farms_id' :
-// 		    $custom_column = implode("\n", get_relationship('farm', $post_id) );
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 			$custom_column = "<table>\n{$custom_column}\n</table>";
-// 			//Render
-// 		    echo $custom_column;
-//             break;
-// 		case '_structures_id' :
-// 		    $custom_column = implode("\n", get_relationship('structure', $post_id) );
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 			$custom_column = "<table>\n{$custom_column}\n</table>";
-// 			//Render
-// 		    echo $custom_column;
-//             break;
-// 		case '_operations_id' :
-// 		    $custom_column = implode("\n", get_relationship('operation', $post_id) );
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 			$custom_column = "<table>\n{$custom_column}\n</table>";
-// 			//Render
-// 		    echo $custom_column;
-//             break;
-//    		default:
-//             break;
-//     }
-
-// }
-
-
-/*
---------------
-* Post : farm
-*/
-
-// // manage_edit-{$post_type}_columns
-// add_filter( 'manage_edit-farm_columns', 'farm_columns' ) ;
-// function farm_columns( $columns ) {
-// 	//$columns['posted'] = __( 'Posted', 'wa-golfs');
-// 	$columns['f_general_farmers'] = __( 'Farmer.s', 'wa-golfs');
-// 	$columns['f_geolocation_map'] = __( 'Geolocation', 'wa-golfs');
-// 	$columns['_golfs_belongs_directory_id'] = __( 'Farm belongs to', 'wa-golfs');
-// 	return $columns;
-// }
-
-// // manage_edit-{$post_type}_sortable_columns
-// add_filter( 'manage_edit-farm_sortable_columns', 'farm_sortable_columns' );
-// function farm_sortable_columns( $columns ) {
-// 	//$columns['_golfs_belongs_directory_id'] = '_golfs_belongs_directory_id';
-// 	return $columns;
-// }
-
-// // manage_{$post_type}_posts_custom_column
-// add_action("manage_farm_posts_custom_column", 'farm_manage_columns', 10, 2);
-// function farm_manage_columns($column_name, $post_id) {
-//     switch ($column_name) {
-// 		case 'f_general_farmers' :
-// 			echo get_recursive_meta($column_name, $post_id);			
-// 			break;
-// 		case 'f_geolocation_map' :
-// 			if ( get_post_meta($post_id, 'f_geolocation_lat', true ) !== '' && get_post_meta($post_id, 'f_geolocation_lng', true ) !== '' )
-// 				echo '<br/><span class="dashicons-before dashicons-yes"></span>';			
-// 			break;
-// 			/*case '_golfs_belongs_directory_id' :
-// 			get_directory_byfarmid($column_name, $post_id);			
-// 			break;*/
-// 		case '_golfs_belongs_directory_id' :
-// 			$datas = get_belongs('farm', $post_id);
-// 		    $custom_column = array();
-// 		    if (isset($datas[$post_id]) && is_array($datas[$post_id]))
-// 		      foreach($datas[$post_id] as $data) {
-// 		      	$link_to = 'href="'.admin_url('edit.php?post_type=directory&rsfp_pids='.$data['ID'].'&farm_pids='.$post_id).'"';
-// 		        $custom_column[] = "\t<tr><td><strong>• <a {$link_to}>{$data['value']}</a></strong></td></tr>";
-// 		      }
-// 		    $custom_column = implode("\n",$custom_column);
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 		    $custom_column = "<table>\n{$custom_column}\n</table>";
-// 		    //Render
-// 		    echo $custom_column;
-// 		default:
-//             break;
-//     }
-// }
-
-/*
---------------
-* Post : structure
-*/
-
-// // manage_edit-{$post_type}_columns
-// add_filter( 'manage_edit-structure_columns', 'structure_columns' ) ;
-// function structure_columns( $columns ) {
-// 	//$columns['posted'] = __( 'Posted', 'wa-golfs');
-// 	$columns['s_general_referent'] = __( 'Referent', 'wa-golfs');
-// 	$columns['_golfs_belongs_directory_id'] = __( 'Structure belongs to', 'wa-golfs');
-// 	return $columns;
-// }
-
-// // manage_edit-{$post_type}_sortable_columns
-// add_filter( 'manage_edit-structure_sortable_columns', 'structure_sortable_columns' );
-// function structure_sortable_columns( $columns ) {
-// 	//$columns['_golfs_belongs_directory_id'] = '_golfs_belongs_directory_id';
-// 	return $columns;
-// }
-
-// // manage_{$post_type}_posts_custom_column
-// add_action("manage_structure_posts_custom_column", 'structure_manage_columns', 10, 2);
-// function structure_manage_columns($column_name, $post_id) {
-//     switch ($column_name) {
-// 		case 's_general_referent' :
-// 			get_meta($column_name, $post_id);			
-// 			break;
-// 		/*case '_golfs_belongs_directory_id' :
-// 			get_directory_bystructureid($column_name, $post_id);			
-// 			break;*/
-// 		case '_golfs_belongs_directory_id' :
-// 			$datas = get_belongs('structure', $post_id);
-// 		    $custom_column = array();
-// 		    if (isset($datas[$post_id]) && is_array($datas[$post_id]))
-// 		      foreach($datas[$post_id] as $data) {
-// 		      	$link_to = 'href="'.admin_url('edit.php?post_type=directory&rsfp_pids='.$data['ID'].'&structure_pids='.$post_id).'"';
-// 		        $custom_column[] = "\t<tr><td><strong>• <a {$link_to}>{$data['value']}</a></strong></td></tr>";
-// 		      }
-// 		    $custom_column = implode("\n",$custom_column);
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 		    $custom_column = "<table>\n{$custom_column}\n</table>";
-// 		    //Render
-// 		    echo $custom_column;
-// 		default:
-//             break;
-//     }
-// }
-
-/*
---------------
-* Post : operation
-*/
-
-// // manage_edit-{$post_type}_columns
-// add_filter( 'manage_edit-operation_columns', 'operation_columns' ) ;
-// function operation_columns( $columns ) {
-// 	//$columns['posted'] = __( 'Posted', 'wa-golfs');
-// 	$columns['o_general_leaders'] = __( 'Leader.s', 'wa-golfs');
-// 	$columns['_golfs_belongs_directory_id'] = __( 'Operation belongs to', 'wa-golfs');
-// 	return $columns;
-// }
-
-// // manage_edit-{$post_type}_sortable_columns
-// add_filter( 'manage_edit-operation_sortable_columns', 'operation_sortable_columns' );
-// function operation_sortable_columns( $columns ) {
-// 	//$columns['_golfs_belongs_directory_id'] = '_golfs_belongs_directory_id';
-// 	return $columns;
-// }
-
-// // manage_{$post_type}_posts_custom_column
-// add_action("manage_operation_posts_custom_column", 'operation_manage_columns', 10, 2);
-// function operation_manage_columns($column_name, $post_id) {
-//     switch ($column_name) {
-// 		case 'o_general_leaders' :
-// 			get_recursive_meta($column_name, $post_id);			
-// 			break;
-// 		/*case '_golfs_belongs_directory_id' :
-// 			get_directory_byoperationid($column_name, $post_id);			
-// 			break;*/
-// 		case '_golfs_belongs_directory_id' :
-// 			$datas = get_belongs('operation', $post_id);
-// 		    $custom_column = array();
-// 		    if (isset($datas[$post_id]) && is_array($datas[$post_id]))
-// 		      foreach($datas[$post_id] as $data) {
-// 		      	$link_to = 'href="'.admin_url('edit.php?post_type=directory&rsfp_pids='.$data['ID'].'&operation_pids='.$post_id).'"';
-// 		        $custom_column[] = "\t<tr><td><strong>• <a {$link_to}>{$data['value']}</a></strong></td></tr>";
-// 		      }
-// 		    $custom_column = implode("\n",$custom_column);
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 		    $custom_column = "<table>\n{$custom_column}\n</table>";
-// 		    //Render
-// 		    echo $custom_column;
-// 		default:
-//             break;
-//     }
-// }
-
-/*
---------------
-* Post : partner
-*/
-
-// // manage_edit-{$post_type}_columns
-// add_filter( 'manage_edit-partner_columns', 'partner_columns' ) ;
-// function partner_columns( $columns ) {
-// 	//$columns['posted'] = __( 'Posted', 'wa-golfs');
-// 	$columns['p_general_link'] = __( 'Link', 'wa-golfs');
-// 	//$columns['_golfs_belongs_directory_id'] = __( 'Partner belongs to', 'wa-golfs');
-// 	return $columns;
-// }
-
-// // manage_edit-{$post_type}_sortable_columns
-// add_filter( 'manage_edit-partner_sortable_columns', 'partner_sortable_columns' );
-// function partner_sortable_columns( $columns ) {
-// 	//$columns['_golfs_belongs_directory_id'] = '_golfs_belongs_directory_id';
-// 	return $columns;
-// }
-
-// // manage_{$post_type}_posts_custom_column
-// add_action("manage_partner_posts_custom_column", 'partner_manage_columns', 10, 2);
-// function partner_manage_columns($column_name, $post_id) {
-//     switch ($column_name) {
-// 		case 'p_general_link' :
-// 			echo get_meta($column_name, $post_id);
-//             break;
-// 		/*case '_golfs_belongs_directory_id' :
-// 			get_directory_bypartnerid($column_name, $post_id);			
-// 			break;*/
-// 		case '_golfs_belongs_directory_id' :
-// 			$datas = get_belongs('partner', $post_id);
-// 		    $custom_column = array();
-// 		    if (isset($datas[$post_id]) && is_array($datas[$post_id]))
-// 		      foreach($datas[$post_id] as $data) {
-// 		      	$link_to = 'href="'.admin_url('edit.php?post_type=directory&rsfp_pids='.$data['ID'].'&partner_pids='.$post_id).'"';
-// 		        $custom_column[] = "\t<tr><td><strong>• <a {$link_to}>{$data['value']}</a></strong></td></tr>";
-// 		      }
-// 		    $custom_column = implode("\n",$custom_column);
-// 		    if (empty($custom_column))
-// 		      $custom_column = "<th> — </th>";
-// 		    $custom_column = "<table>\n{$custom_column}\n</table>";
-// 		    //Render
-// 		    echo $custom_column;
-//             break;
-// 		default:
-//             break;
-//     }
-// }
-
-
 /**
- * Taxonomy : example
+ * Helpers
  */
 
-// add_filter( 'manage_edit-production_columns', 'taxs_production_columns' ) ;
-// function taxs_production_columns( $columns ) {
-// 	//$columns['p_general_image'] = __( 'Image', 'wa-golfs');
+ 
 
-// 	$newcols = array();
-// 	foreach($columns as $col_key => $col_title) {
-// 		print( $col_key );
-// 		if ($col_key=='name') // Put the Thumbnail column before the Title column
-// 			$newcols['p_general_image'] = __('<span class="dashicons-before dashicons-visibility" style="color:silver;"></span>', 'wa-golfs');
-// 		$newcols[$col_key] = $col_title;
-// 	}
-// 	return $newcols;
+//Get state 
+function get_state($column_name, $post_id) {
+	$stateColors = array(
+		'pending' => array(
+			'textColor' => 'rgb(236, 173, 39)',
+			'backgroundColor' => 'rgb(249, 235, 204)',
+		),
+		'current' => array(
+			'textColor' => 'rgb(66, 149, 66)',
+			'backgroundColor' => 'rgb(182, 222, 182)',
+		),
+		'ended' => array(
+			'textColor' => 'rgb(171, 171, 171)',
+			'backgroundColor' => 'rgb(226,226,226)',
+		),
+	);
+	$stateLabels = array(
+		'pending' => array(
+			'label' => 'À venir',
+		),
+		'current' => array(
+			'label' => 'En cours',
+		),
+		'ended' => array(
+			'label' => 'Terminé',
+		),
+	);
 
-// 	//return $columns;
-// }
+	$state = get_post_meta($post_id, $column_name, true );
+	if ( empty( $state ) ) {
+		echo __( '<span style="color:silver;">—</span>' );
+	} else {
+		$color = $stateColors[$state];
+		$label = $stateLabels[$state]['label'];
+		printf(
+			__( '<span class="label" style="color:%s; background-color:%s;">%s</span>' ),
+			$color['textColor'],
+			$color['backgroundColor'],
+			$label
+		);
+	}
+}
 
 
-/*
-	Functions 
-*/
-
-// /**
-//  * Usage:
-//  * http://example.com/wp-admin/edit.php?my_pids=4088,4090,4092,4094
-//  */
-// add_filter( 'pre_get_posts', 'limit_post_list_byid' );
-
-// function limit_post_list_byid( $query ) 
-// {
-//     // Don't run on frontend
-//     if( !is_admin() )
-//         return $query;
-
-//     global $pagenow;
-
-//     // Restrict to Edit page
-//     if( 'edit.php' !== $pagenow )
-//         return $query;
-
-//     // Check for our filter
-//     if( !isset( $_GET['rsfp_pids'] ) )
-//         return $query;
-
-//     // Finally, filter
-//     $limit_posts = explode( ',', $_GET['rsfp_pids'] ); // Convert comma delimited to array    
-
-// 	//  Check if existing post__in 
-// 	$post__in = $query->get( 'post__in');
-// 	//print_r($post__in);
-
-//     // Finally, filter
-//     //$query->set( 'post__in', $limit_posts );      
-//     $query->set( 'post__in', array_merge($post__in,$limit_posts) );     
-
-//     return $query;
-// }
-
-// Get Farm documents 
-// function get_directory_byfarmid($column_name, $post_id) {
-// 	if ( empty( $post_id ) )
-// 		echo __( '<span style="color:silver;">—</span>' ); // marker.png
-// 	else
-// 		printf( __( '<h2>%s</h2>' ), $post_id );
-// }
-
-//Get relationships  
-// function get_relationship($post_type, $post_id) {
-// 	$post_ids = rwmb_meta( 'd_relationships_'.$post_type, array(), $post_id );
-// 	$ret = array();
-// 	if (isset($post_ids) && is_array($post_ids))
-// 	  foreach($post_ids as $post_id) {
-// 		$ret[] = sprintf(
-// 			'<li data-for="%s" style="display: inline-block;margin-right:5px;">
-// 				<div class="--media-icon image-icon" style="height:63px;width:63px;border:solid 4px white;border-radius: 2px;box-shadow: 1px 1px 4px rgba(0,0,0,.25)">%s</div>
-// 				<strong>• <a href="%s">%s</a></strong>
-// 				<span class="row-actions">
-// 				<a href="%s" title="Afficher dans la liste"><span class="dashicons-before dashicons-search"></span></a> 
-// 				<a href="%s" title="Modifier"><span class="dashicons-before dashicons-edit"></span></a> 
-// 				<a href="%s" title="Voir"><span class="dashicons-before dashicons-visibility"></span></a>
-// 				</span>
-// 			</li>',
-// 			get_the_ID(),
-// 			get_the_post_thumbnail( $post_id, "thumbnail", array('style'=>'height:63px;width:63px;')),
-// 			esc_attr(esc_url(admin_url('edit.php?post_type='.$post_type.'&rsfp_pids='.$post_id))),
-// 			get_the_title( $post_id ),
-// 			esc_attr(esc_url(admin_url('edit.php?post_type='.$post_type.'&rsfp_pids='.$post_id))),
-// 			esc_attr(esc_url(admin_url('post.php?post='.$post_id.'&action=edit'))),
-// 			esc_attr(esc_url(get_permalink( $post_id )))
-// 		); //$field['field_name'],
-// 	  }
-// 	return $ret;
-// }
-
-// Get Directory
-// function get_belongs($post_type, $post_id) {
-// 	$belongs = array();
-//     global $wpdb;
-    
-// 	$meta_key = 'd_relationships_' . $post_type;
-//     $sql = <<<SQL
-// 	SELECT
-// 	$wpdb->postmeta.meta_key,
-// 	$wpdb->postmeta.meta_value,
-// 	$wpdb->postmeta.post_id,
-// 	$wpdb->posts.ID,
-// 	$wpdb->posts.post_title
-// 	FROM
-// 	$wpdb->postmeta,
-// 	$wpdb->posts
-// 	WHERE
-// 	$wpdb->postmeta.meta_key LIKE '{$meta_key}'
-// 	AND $wpdb->postmeta.meta_value = {$post_id}
-// 	AND $wpdb->posts.ID = $wpdb->postmeta.post_id
-// 	AND $wpdb->posts.post_status IN ('publish','pending')
-// 	SQL;
-    
-//     $posts = $wpdb->get_results($sql);
-//     foreach($posts as $post) {
-//       if (!empty($post->post_title))
-//         $post_title = $post->post_title;
-//       else
-//       	$post_title = '—';
-//       if (!isset($belongs[$post_id = $post->meta_value]))
-//         $belongs[$post_id] = array();
-// 		$belongs[$post_id][] = array(
-// 			'ID' => $post->ID,
-// 			'value' => $post_title,
-// 			);
-// 		}
-// 	return $belongs;
-// }
 
 // Get content 
 function get_content_excerpt($post_id) {
@@ -746,7 +426,7 @@ function get_meta_link($column_name, $post_id) {
 	if ( empty( $meta ) )
 		echo __( '<span style="color:silver;">—</span>' );
 	else
-		printf( __( '<h3><a href="%s"><span class="label">Lien FFGOLF</span></a></h3>' ), $meta);
+		printf( __( '<a href="%s"><span class="new"><span class="dashicons-before dashicons-admin-links"></span> Lien FFGOLF</span></a>' ), $meta);
 }
 
 //Get recursive meta

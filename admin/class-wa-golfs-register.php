@@ -105,6 +105,7 @@ function register_post_types() {
 			// ),
 		)
 	];
+	
 	register_post_type( 'competitions', $args );
 
 	/**
@@ -231,7 +232,7 @@ function register_post_types() {
 		'menu_position'       => '',
 		'menu_icon'           => 'dashicons-editor-quote',
 		'capability_type'     => 'post',
-		'supports'            => ['editor'],
+		'supports'            => ['editor', 'thumbnail'],
 		'taxonomies'          => [],
 		'rewrite'             => [
 			'with_front' => false,

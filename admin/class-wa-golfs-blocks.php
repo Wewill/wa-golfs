@@ -17,7 +17,7 @@ function allow_blocks() {
 
 }
 
-function post_type_allowed_block_types( $allowed_blocks, $editor_context ) {
+function post_type_allowed_block_types( $allowed_blocks = array(), $editor_context ) {
 
 	// competition
 	if ( isset( $editor_context->post ) && $editor_context->post->post_type === 'competition' ) {

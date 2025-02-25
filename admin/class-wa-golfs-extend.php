@@ -18,9 +18,17 @@ class RWMB_PreviewCsv_Field extends RWMB_Field {
 			// print_r($csv_file);
 			if ( !file_exists( $csv_file['path'] ) ) return "CSV file not found.";
 			
-			$csv_data = array_map('str_getcsv', file($csv_file['path']));
+			$csv_data = array_map(function($line) {
+				return str_getcsv($line, ';');
+			}, file($csv_file['path']));
 			if ( count($csv_data) > 0 ) :
-				$html .= "<table>";
+				$html .= "<table style=\"font-size: 11px; width: 100%;\">";
+				$header = array_shift($csv_data);
+				$html .= "<tr>";
+				foreach( $header as $cell ) :
+					$html .= sprintf('<th style="font-weight: bold;">%s</th>', esc_html($cell));
+				endforeach;
+				$html .= "</tr>";
 				foreach( $csv_data as $row ) : 
 					$html .= "<tr>";
 					foreach( $row as $cell ) :

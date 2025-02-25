@@ -124,7 +124,9 @@ function register_blocks( $meta_boxes ) {
 
 		],
 		// Render
-		'render_callback' => function( $attributes, $preview, $post_id ) {
+		'render_callback' => function( $attributes ) {
+			$preview = defined( 'REST_REQUEST' ) && REST_REQUEST ?? true;
+
 			$prefix = 'waff_golfs_';
 
 			// Fields data.
@@ -313,13 +315,13 @@ function register_blocks( $meta_boxes ) {
 			$c_display = mb_get_block_field( $prefix . 'c_display');
 
 			// Display notice if block isn't full
-			if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
-				echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
-					<strong>Oh snap!</strong> '
-					. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
-					'<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-				</div>';
-			}
+			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
+			// 	echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
+			// 		<strong>Oh snap!</strong> '
+			// 		. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
+			// 		'<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+			// 	</div>';
+			// }
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="background-color: var(--waff-action-3-lighten-3); color: var(--waff-action-3-inverse);">
 
@@ -444,7 +446,6 @@ function register_blocks( $meta_boxes ) {
 		],
 		// Render
 		'render_callback' => function( $attributes ) {
-
 			$preview = defined( 'REST_REQUEST' ) && REST_REQUEST ?? true;
 
 			// Use constants
@@ -493,13 +494,13 @@ function register_blocks( $meta_boxes ) {
 			$co_display = mb_get_block_field( $prefix . 'co_display');
 
 			// Display notice if block isn't full
-			if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
-				echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
-					<strong>Oh snap!</strong> '
-					. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
-					'<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-				</div>';
-			}
+			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
+			// 	echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
+			// 		<strong>Oh snap!</strong> '
+			// 		. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
+			// 		'<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+			// 	</div>';
+			// }
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="--background-color: var(--waff-action-3-lighten-3); --color: var(--waff-action-3-inverse);">
 				<div class="container-fluid" <?= $preview ? 'style="padding:3rem;"' : ''; ?>>

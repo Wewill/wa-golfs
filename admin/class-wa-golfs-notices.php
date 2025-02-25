@@ -10,7 +10,7 @@ function general_admin_notice(){
 			'allowed_taxonomy' => array(),
 			'allowed_page' => array(),
 			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => 'Fiches.s structures', 'content' => 'Dans cet onglet se trouve la <b>liste des associations du réseau FADEAR ou réseau partenaire recensées dans le <em>Répertoire</em></b>, qui peuvent potentiellement êtres administrateurs de leur structure sur le site. Les fiches sont également classifiées via une ou plusieurs catégories de <b>géographie (régions)</b>.', 'class' => 'default',
+			'title' => 'Compétition.s', 'content' => 'Dans cet onglet se trouve la <b>liste des compétitions également recensées sur <em>FFGolf</em></b>. Les fiches permettent de définir un état, une date, des données importées de départs et de résultats. Les fiches peuvent être classifiées via une ou plusieurs catégories. Les données sont à exporter de FFGolf en *.csv.', 'class' => 'default',
 			'icon' => 'dashicons dashicons-awards',
 		],
 		//course 
@@ -19,7 +19,7 @@ function general_admin_notice(){
 			'allowed_taxonomy' => array(),
 			'allowed_page' => array(),
 			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => '<em>Répertoire</em> des savoir-faire › Fiches', 'content' => 'Dans cet onglet se trouve la <b>liste des fiches de savoir-faire du <em>Répertoire</em></b>. Chaque fiche peut être reliée à une ou plusieurs <b>fiche.s structure</b> ( association du réseau FADEAR ou réseau partenaire ), à une ou plusieurs <b>fiche.s opérations</b> ( partenaire opérationnel ), à un ou plusieurs <b>fiche ferme.s</b> et son.ses paysans.s du <em>Répertoire</em>. Les fiches sont également classifiées via une ou plusieurs catégories de <b>géographie (départements)</b>,  <b>production</b> et <b>thématiques</b>.<br/><br/><b>Comment localiser un savoir-faire sur la carte ?</b> En associant une catégorie geographie, le savoir-faire sera localisé au centre du département. En geolocalisant une ferme et en l\'associant au savoir-faire, le savoir-faire sera précisement localiser selon les coordonnées de la ferme.', 'class' => 'default',
+			'title' => 'Trous', 'content' => 'Dans cet onglet se trouve la <b>liste des trous du parcours <em>du Golf de Salouël</em></b>. Il est possible de renseigner pur chaque trou, le nombre de coups, le handicap, la distance...', 'class' => 'default',
 			'icon' => 'dashicons dashicons-location-alt',
 		],
 		//testimony 
@@ -28,7 +28,7 @@ function general_admin_notice(){
 			'allowed_taxonomy' => array(),
 			'allowed_page' => array(),
 			'allowed_roles' => array('administrator', 'editor', 'contributor'), 
-			'title' => '<em>Répertoire</em> des savoir-faire › Fiches', 'content' => 'Dans cet onglet se trouve la <b>liste des fiches de savoir-faire du <em>Répertoire</em></b>. Chaque fiche peut être reliée à une ou plusieurs <b>fiche.s structure</b> ( association du réseau FADEAR ou réseau partenaire ), à une ou plusieurs <b>fiche.s opérations</b> ( partenaire opérationnel ), à un ou plusieurs <b>fiche ferme.s</b> et son.ses paysans.s du <em>Répertoire</em>. Les fiches sont également classifiées via une ou plusieurs catégories de <b>géographie (départements)</b>,  <b>production</b> et <b>thématiques</b>.<br/><br/><b>Comment localiser un savoir-faire sur la carte ?</b> En associant une catégorie geographie, le savoir-faire sera localisé au centre du département. En geolocalisant une ferme et en l\'associant au savoir-faire, le savoir-faire sera précisement localiser selon les coordonnées de la ferme.', 'class' => 'default',
+			'title' => 'Témoignage.s', 'content' => 'Dans cet onglet se trouve la <b>liste des témoignage aléatoire du site</b>.', 'class' => 'default',
 			'icon' => 'dashicons dashicons-editor-quote',
 		],
 		//competition > competition-category 

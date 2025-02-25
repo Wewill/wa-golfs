@@ -59,7 +59,7 @@ function competitions_fields( $meta_boxes ) {
                 'mime_type' => ['text/csv'],
             ],
             [
-                'name' => __( 'Preview', 'wa-rsfp' ),
+                'name' => __( 'Preview', 'wa-golfs' ),
                 'id'   =>  $prefix . 'preview_competition_departures',
                 'type' => 'previewcsv',
                 'meta_value' => $prefix . 'competition_departures'
@@ -75,7 +75,7 @@ function competitions_fields( $meta_boxes ) {
                 'mime_type' => ['text/csv'],
             ],
             [
-                'name' => __( 'Preview', 'wa-rsfp' ),
+                'name' => __( 'Preview', 'wa-golfs' ),
                 'id'   =>  $prefix . 'preview_competition_results_brut',
                 'type' => 'previewcsv',
                 'meta_value' => $prefix . 'competition_results_brut'
@@ -90,7 +90,7 @@ function competitions_fields( $meta_boxes ) {
                 'mime_type' => ['text/csv'],
             ],
             [
-                'name' => __( 'Preview', 'wa-rsfp' ),
+                'name' => __( 'Preview', 'wa-golfs' ),
                 'id'   =>  $prefix . 'preview_competition_results_net',
                 'type' => 'previewcsv',
                 'meta_value' => $prefix . 'competition_results_net'
@@ -139,10 +139,16 @@ function course_fields( $meta_boxes ) {
         'post_types' => ['course'],
         'fields'     => [
             [
+                'name'              => __( 'Number', 'wa-golfs' ),
+                'id'                => $prefix . 'number',
+                'type'              => 'text',
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the course number.', 'wa-golfs' ),
+            ],
+            [
                 'name'              => __( 'Distances', 'wa-golfs' ),
                 'id'                => $prefix . 'distances',
                 'type'              => 'text_list',
-                'label_description' => __( 'Fill in the specific distances for the course here.', 'wa-golfs' ),
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the specific distances for the course here.', 'wa-golfs' ),
                 'options'           => [
                     'Color'    => 'color',
                     'Distance' => 'distance',
@@ -150,13 +156,13 @@ function course_fields( $meta_boxes ) {
 				'clone'             => true,
                 'sort_clone'        => true,
                 'max_clone'         => 99,
-                'desc'              => __( 'Exemple : Blancs: 103 m - Jaunes: 101 m - Bleus: 93 m - Rouges: 90 m', 'wa-golfs' ),
+                'desc'              => '<span class="label">INFO</span> ' . __( 'Exemple : Blancs: 103 m - Jaunes: 101 m - Bleus: 93 m - Rouges: 90 m', 'wa-golfs' ),
             ],
             [
                 'name'              => __( 'Number of strokes', 'wa-golfs' ),
                 'id'                => $prefix . 'number_of_strokes',
                 'type'              => 'text',
-                'label_description' => __( 'Fill in the number of stroke for the course here.', 'wa-golfs' ),
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the number of stroke for the course here.', 'wa-golfs' ),
                 'desc'              => __( 'PAR', 'wa-golfs' ),
                 // 'placeholder'       => __( 'PAR', 'wa-golfs' ),
             ],
@@ -164,7 +170,7 @@ function course_fields( $meta_boxes ) {
                 'name'              => __( 'Handicap', 'wa-golfs' ),
                 'id'                => $prefix . 'handicap',
                 'type'              => 'text',
-                'label_description' => __( 'Fill in the handicap for the course here.', 'wa-golfs' ),
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the handicap for the course here.', 'wa-golfs' ),
                 'desc'              => __( 'HCP', 'wa-golfs' ),
                 // 'placeholder'       => __( 'HCP', 'wa-golfs' ),
             ],
@@ -172,7 +178,7 @@ function course_fields( $meta_boxes ) {
                 'name'              => __( 'Green depth', 'wa-golfs' ),
                 'id'                => $prefix . 'green',
                 'type'              => 'text',
-                'label_description' => __( 'Fill in the green depth for the course here.', 'wa-golfs' ),
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the green depth for the course here.', 'wa-golfs' ),
                 'desc'              => __( 'GREEN', 'wa-golfs' ),
                 // 'placeholder'       => __( 'GREEN', 'wa-golfs' ),
             ],
@@ -180,23 +186,11 @@ function course_fields( $meta_boxes ) {
                 'name'              => __( 'Altitude', 'wa-golfs' ),
                 'id'                => $prefix . 'altitude',
                 'type'              => 'text',
-                'label_description' => __( 'Fill in the altitude in meters for the course here.', 'wa-golfs' ),
-            ],
-
-            [
-                'name'              => __( 'Video', 'wa-golfs' ),
-                'id'                => $prefix . 'c_video',
-                'type'              => 'video',
-                'max_file_uploads'  => 1,
-                'force_delete'      => false,
-                'required'          => false,
-                'clone'             => false,
-                'clone_empty_start' => false,
-                'hide_from_rest'    => false,
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Fill in the altitude in meters for the course here.', 'wa-golfs' ),
             ],
             [
                 'name'              => __( 'Course map', 'wa-golfs' ),
-                'id'                => $prefix . 'c_course_map',
+                'id'                => $prefix . 'course_map',
                 'type'              => 'image_advanced',
                 'force_delete'      => false,
                 'required'          => false,
@@ -204,8 +198,66 @@ function course_fields( $meta_boxes ) {
                 'clone_empty_start' => false,
                 'hide_from_rest'    => false,
             ],
+            [
+                'name'       => __( 'Introduction', 'wa-golfs' ),
+                'id'         => $prefix . 'introduction',
+                'type'       => 'textarea',
+                // 'required'   => true,
+                'limit'      => 350,
+                'rows'       => 5,
+                'class' => 'enable-markdown',
+				'label_description' => '<span class="label">INFO</span> ' . __( 'Fill with simple text', 'wa-golfs' ),
+				'desc' => '<span class="label">TIPS</span> ' . __( 'Lead content will be showed after title', 'wa-golfs' ) . '<br/>' .   __( '<span class="label">TIPS</span> Markdown is available : *italic* (Command + b) **bold** (Command + i) ***label*** (Command + Shift + L) #small# (Command + Shift + S) ##huge## (Command + Shift + H)', 'wa-golfs' ),
+            ],
+
         ],
     ];
+
+    // Medias 
+	$meta_boxes[] = [
+		'title'      => __( 'Course › Medias', 'wa-golfs' ),
+		'id'         => 'course-medias',
+		'post_types' => ['course'],
+		'fields'     => [
+            [
+                'type'       => 'divider',
+                'before'      => '<span class="label">INFO</span> ' . __( '<b>Featured image</b> please choose an image below on side panel.', 'wa-golfs' ),
+                'save_field' => false,
+            ],
+            [
+                'name'             => __( 'Gallery files', 'wa-golfs' ),
+                'id'               => $prefix . 'medias_gallery',
+                'type'             => 'image_advanced',
+                'desc'             => __( '<span class="important">Maximum 20 images.</span>', 'wa-golfs' ),
+                'max_file_uploads' => 20,
+				'label_description' => '<span class="label">INFO</span>' .__( 'Choose one or many image.s', 'wa-golfs' ),
+            ],
+            [
+                'name' => __( 'Vimeo & YouTube video link', 'wa-golfs' ),
+                'id'   => $prefix . 'medias_video_link',
+                'type' => 'url',
+                'clone'      => true,
+                'sort_clone' => true,
+                'max_clone'  => 20,
+                'label_description' => '<span class="label">INFO</span> ' . __( 'Recommanded : choose an external video link from online platform', 'wa-golfs' ),
+            ],
+            [
+                'name' => __( 'Video file', 'wa-golfs' ),
+                'id'   => $prefix . 'medias_video',
+                'type' => 'video',
+				'label_description' => '<span class="label">INFO</span> ' . __( 'Upload a video file directly to the media library', 'wa-golfs' ),
+				'desc' => '<span class="label">TIPS</span> ' . __( 'Video has to be *.mp4 well compressed format.', 'wa-golfs' ),
+            ],
+			[
+                'name'             => __( 'Files', 'wa-golfs' ),
+                'id'               => $prefix . 'medias_files',
+                'type'             => 'file_upload',
+                'desc'             => __( '<span class="important">Maximum 10 files.</span>', 'wa-golfs' ),
+                'max_file_uploads' => 10,
+				'label_description' => '<span class="label">INFO</span> ' . __( 'Upload one or many file.s', 'wa-golfs' ),
+            ],
+		],
+	];
 
     return $meta_boxes;
 }

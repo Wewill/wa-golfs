@@ -274,7 +274,9 @@ function register_blocks( $meta_boxes ) {
 			],
 		],
 		// Render
-		'render_callback' => function( $attributes, $preview, $post_id ) {
+		'render_callback' => function( $attributes ) {
+			$preview = defined( 'REST_REQUEST' ) && REST_REQUEST ?? true;
+
 			$prefix = 'waff_golfs_';
 			// Fields data.
 			// if ( empty( $attributes['data'] ) ) {
@@ -331,7 +333,7 @@ function register_blocks( $meta_boxes ) {
 						<div class="max-w-50"><InnerBlocks /></div>	
 					</div>
 
-					<div class="row">
+					<div class="row" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 
 						<style scoped>
 							div.framefilter {
@@ -369,10 +371,10 @@ function register_blocks( $meta_boxes ) {
 								$content = get_the_content();
 								$content = wp_trim_words( $content, $c_display === 'featured' ? 40: 10, '...' ); // Limit content to 200 characters
 						?>
-								<div class="<?= $c_display === 'featured' ? 'col-md-6' : 'col-sm-4 col-md-3' ?> mb-4">
+								<div class="<?= $c_display === 'featured' ? 'col-md-6' : 'col-sm-4 col-md-3' ?> mb-4" <?= $preview ? 'style="flex:1;"' : ''; ?>>
 									<div class="card c-card overflow-hidden rounded-4 shadow-lg border-0 mb-4 ---- bg-cover bg-position-center-center" style="background-image: url('<?php the_post_thumbnail_url('large'); ?>');">
 										<div class="d-flex flex-column justify-content-between h-100 p-4 pb-3 text-white text-shadow-1">
-											<div class="d-flex justify-content-between p-4 rounded-4 fw-bold framefilter">
+											<div class="d-flex justify-content-between p-4 rounded-4 fw-bold framefilter" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 												<?php if ( $c_number_of_strokes ) : ?>
 													<p class="mb-0">Par | <?= esc_html( $c_number_of_strokes ); ?></p>
 												<?php endif; ?>
@@ -441,21 +443,12 @@ function register_blocks( $meta_boxes ) {
 			],
 		],
 		// Render
-		'render_callback' => function( $attributes, $preview, $post_id ) {
-			$stateColors = array(
-				'pending' => array(
-					'textColor' => 'rgb(236, 173, 39)',
-					'backgroundColor' => 'rgb(249, 235, 204)',
-				),
-				'current' => array(
-					'textColor' => 'rgb(66, 149, 66)',
-					'backgroundColor' => 'rgb(182, 222, 182)',
-				),
-				'ended' => array(
-					'textColor' => 'rgb(171, 171, 171)',
-					'backgroundColor' => 'rgb(226,226,226)',
-				),
-			);
+		'render_callback' => function( $attributes ) {
+
+			$preview = defined( 'REST_REQUEST' ) && REST_REQUEST ?? true;
+
+			// Use constants
+			$stateColors = STATE_COLORS;
 
 			$prefix = 'waff_golfs_';
 			// Fields data.
@@ -509,20 +502,19 @@ function register_blocks( $meta_boxes ) {
 			}
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="--background-color: var(--waff-action-3-lighten-3); --color: var(--waff-action-3-inverse);">
-				<div class="container-fluid">
-					<div class="row row-cols-1 row-cols-md-2 mt-4 mb-4">
+				<div class="container-fluid" <?= $preview ? 'style="padding:3rem;"' : ''; ?>>
+					<div class="row row-cols-1 row-cols-md-2 mt-4 mb-4" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 
-						<!-- Right col-->
-						<div class="col">
-							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5">
+						<div class="col"  <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>> 
+							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les compétitions à venir</h6>
-								<a href="#" class="headflat fw-light mb-2 ps-4">Toutes <i class="bi bi-arrow-right-short"></i></a>
-								<h6 class="headflat text-color-accent-1 fw-light ms-auto">Juillet 2024</h6>
+								<a href="#" class="headflat fw-light ps-4" <?= $preview ? 'style="display:none;"' : ''; ?>>Toutes <i class="bi bi-arrow-right-short"></i></a>
+								<h6 class="headflat text-color-accent-1 fw-light ms-auto"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 
 							<div class="row">
 								<div class="col">
-									<!-- Grid rows -->
+
 									<div class="row row-cols-1 row-cols-md-1 g-4">
 										<?php
 										$args = array(
@@ -554,8 +546,8 @@ function register_blocks( $meta_boxes ) {
 											while ( $competition_query->have_posts() ) : $competition_query->the_post();
 												$c_date = get_post_meta( get_the_ID(), 'c_date', true );
 												?>
-												<div class="col">
-												<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
+												<div class="col mt-0">
+												<h5 class="mb-2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
 													<span class="dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: 2px; margin-left: 2px; background-color: <?php echo esc_attr( $stateColors[get_post_meta(get_the_ID(), 'c_state', true)]['textColor'] ); ?>;"></span>
 												</h5>
 													<p class="text-color-accent-1"><span class="fw-bold text-action-3"><?php echo date_i18n( 'j F Y', strtotime( $c_date ) ); ?></span> <?= wp_trim_words( get_the_excerpt(), 17, '...' ); ?></p>
@@ -573,15 +565,13 @@ function register_blocks( $meta_boxes ) {
 							</div>
 						</div>
 
-						<!-- Left col-->
-						<div class="col">
-							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5">
+						<div class="col" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
+							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les résultats</h6>
-								<a href="#" class="headflat fw-light mb-2 ps-4 me-auto">Tous <i class="bi bi-arrow-right-short"></i></a>
-								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none">Juillet 2024</h6>
+								<a href="#" class="headflat fw-light ps-4 me-auto" <?= $preview ? 'style="display:none;"' : ''; ?>>Tous <i class="bi bi-arrow-right-short"></i></a>
+								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 
-							<!-- Grid rows -->
 							<div class="row row-cols-1 row-cols-md-2 g-4">
 
 								<?php
@@ -614,8 +604,8 @@ function register_blocks( $meta_boxes ) {
 									while ( $ended_competition_query->have_posts() ) : $ended_competition_query->the_post();
 										$c_date = get_post_meta( get_the_ID(), 'c_date', true );
 										?>
-										<div class="col">
-											<h5><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
+										<div class="col mt-0">
+											<h5 class="mb-2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
 												<span class="dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: 2px; margin-left: 2px; background-color: <?php echo esc_attr( $stateColors[get_post_meta(get_the_ID(), 'c_state', true)]['textColor'] ); ?>;"></span>
 											</h5>
 											<p class="text-color-accent-1"><span class="fw-bold text-action-3"><?php echo date_i18n( 'j F Y', strtotime( $c_date ) ); ?></span> <?= wp_trim_words( get_the_excerpt(), 17, '...' ); ?></p>
@@ -634,26 +624,20 @@ function register_blocks( $meta_boxes ) {
 				</div>				
 			</section>
 			<script>
-			const stateColors = {
-				pending: {
-					textColor: "rgb(236, 173, 39)",
-					backgroundColor: "rgb(249, 235, 204)",
-				},
-				current: {
-					textColor: "rgb(66, 149, 66)",
-					backgroundColor: "rgb(182, 222, 182)",
-				},
-				ended: {
-					textColor: "rgb(171, 171, 171)",
-					backgroundColor: "rgb(226,226,226)",
-				},
-			};
+			// Convert PHP array to JS object
+			const stateColors = <?= json_encode(STATE_COLORS); ?>;
+			const stateLabels = <?= json_encode(STATE_LABELS); ?>;		
+			// Initialize FullCalendar	
 			document.addEventListener('DOMContentLoaded', function() {
 				var calendarEl = document.getElementById('competitions-calendar');
 				var calendar = new FullCalendar.Calendar(calendarEl, {
 					initialView: 'dayGridMonth',
 					locale: "fr", // Set the locale to French
-					// eventLimit: true, // allow "more" link when too many events
+					headerToolbar: false, // Hide the toolbar
+					height: 'auto', // Adjust the height to display the full calendar
+					contentHeight: 'auto', // Ensure the content height is auto
+					dayHeaders: false, // Hide days
+					fixedWeekCount: false, // Determines the number of weeks displayed in a month view
 					events: [
 						<?php
 						$args = array(
@@ -664,10 +648,6 @@ function register_blocks( $meta_boxes ) {
 									'column' => 'post_date_gmt',
 									'after' => '1 year ago',
 								),
-								// array(
-								// 	'column' => 'post_modified_gmt',
-								// 	'after' => '1 month ago',
-								// ),
 							),
 						);
 						$competition_query = new WP_Query( $args );
@@ -691,19 +671,15 @@ function register_blocks( $meta_boxes ) {
 					eventDidMount: function(info) {
 						var state = info.event.extendedProps.state;
 						if (state && stateColors[state]) {
-							// info.el.style.backgroundColor = stateColors[state].backgroundColor;
 							info.el.style.color = stateColors[state].textColor;
-							// Change color of dot marker
 							var dotEl = info.el.getElementsByClassName('fc-daygrid-event-dot')[0];
 							if (dotEl) {
 								dotEl.style.borderColor = stateColors[state].textColor;
 							}
-							// Hide time
 							var timeEl = info.el.getElementsByClassName('fc-event-time')[0];
 							if (timeEl) {
 								timeEl.classList.add('visually-hidden');
 							}
-							// Hide title
 							var titleEl = info.el.getElementsByClassName('fc-event-title')[0];
 							if (titleEl) {
 								titleEl.classList.add('visually-hidden');
@@ -717,6 +693,11 @@ function register_blocks( $meta_boxes ) {
 					},
 				});
 				calendar.render();
+
+				// Add custom styles to override FullCalendar styles
+				var style = document.createElement('style');
+				style.innerHTML = '.fc-scrollgrid { border:0 !important; } .fc-daygrid-day-events { display:flex; margin-bottom: 0 !important; justify-content: end;} .fc-scrollgrid tr { border-top:1px solid silver; border-color:var(--waff-color-dark-trans-4); }';
+				document.head.appendChild(style);
 			});
 			</script>
 			<?php

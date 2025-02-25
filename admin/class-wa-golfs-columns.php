@@ -274,32 +274,10 @@ function testimony_manage_columns($column_name, $post_id) {
 
 //Get state 
 function get_state($column_name, $post_id) {
-	$stateColors = array(
-		'pending' => array(
-			'textColor' => 'rgb(236, 173, 39)',
-			'backgroundColor' => 'rgb(249, 235, 204)',
-		),
-		'current' => array(
-			'textColor' => 'rgb(66, 149, 66)',
-			'backgroundColor' => 'rgb(182, 222, 182)',
-		),
-		'ended' => array(
-			'textColor' => 'rgb(171, 171, 171)',
-			'backgroundColor' => 'rgb(226,226,226)',
-		),
-	);
-	$stateLabels = array(
-		'pending' => array(
-			'label' => 'À venir',
-		),
-		'current' => array(
-			'label' => 'En cours',
-		),
-		'ended' => array(
-			'label' => 'Terminé',
-		),
-	);
-
+	// Use constants
+	$stateColors = STATE_COLORS;
+	$stateLabels = STATE_LABELS;
+	
 	$state = get_post_meta($post_id, $column_name, true );
 	if ( empty( $state ) ) {
 		echo __( '<span style="color:silver;">—</span>' );

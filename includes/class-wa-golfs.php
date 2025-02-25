@@ -122,6 +122,11 @@ class Wa_Golfs {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wa-golfs-public.php';
 
+		/**
+		 * Load the constants file
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wa-golfs-constants.php';
+
 		$this->loader = new Wa_Golfs_Loader();
 
 	}

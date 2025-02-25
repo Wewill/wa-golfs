@@ -1,29 +1,5 @@
-const stateColors = {
-  pending: {
-    textColor: "rgb(236, 173, 39)",
-    backgroundColor: "rgb(249, 235, 204)",
-  },
-  current: {
-    textColor: "rgb(66, 149, 66)",
-    backgroundColor: "rgb(182, 222, 182)",
-  },
-  ended: {
-    textColor: "rgb(171, 171, 171)",
-    backgroundColor: "rgb(226,226,226)",
-  },
-};
-
-const stateLabels = {
-  pending: {
-    label: "À venir",
-  },
-  current: {
-    label: "En cours",
-  },
-  ended: {
-    label: "Terminé",
-  },
-};
+const stateColors = wa_golfs_calendar.state_colors;
+const stateLabels = wa_golfs_calendar.state_labels;
 
 document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("competitions-calendar");

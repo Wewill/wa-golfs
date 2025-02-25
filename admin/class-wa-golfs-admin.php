@@ -159,6 +159,13 @@ class Wa_Golfs_Admin {
 				array('fullcalendar'), 
 				$this->version, false
 			);
+			// Add constants to the script 
+			wp_localize_script( $this->plugin_name . '_calendar', 'wa_golfs_calendar', array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'wa-golfs' ),
+				'state_colors' => STATE_COLORS,
+				'state_labels' => STATE_LABELS,
+			));
 		}
 
 	}

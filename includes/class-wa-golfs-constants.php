@@ -1,4 +1,3 @@
-
 <?php
 // Définition des constantes
 const STATE_COLORS = array(
@@ -31,4 +30,3 @@ const STATE_LABELS = array(
 // Définition des variables
 $stateColors = STATE_COLORS;
 $stateLabels = STATE_LABELS;
-?>

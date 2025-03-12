@@ -146,7 +146,7 @@ function register_blocks( $meta_boxes ) {
 				$id = $attributes['anchor'];
 			}
 			// Block class
-			$themeClass = 'testimony --mt-10 --mb-10 contrast--light';
+			$themeClass = 'testimony mt-0 --mb-10 contrast--light';
 			$class = $themeClass . ' ' . ( $attributes['className'] ?? '' );
 			if ( ! empty( $attributes['align'] ) ) {
 				$class .= " align{$attributes['align']}";

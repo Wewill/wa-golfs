@@ -242,4 +242,3 @@ function register_post_types() {
 	register_post_type( 'testimony', $args );
 	
 }
-?>

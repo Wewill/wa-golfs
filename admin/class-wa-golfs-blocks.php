@@ -146,7 +146,7 @@ function register_blocks( $meta_boxes ) {
 				$id = $attributes['anchor'];
 			}
 			// Block class
-			$themeClass = 'testimony mt-0 --mb-10 contrast--light';
+			$themeClass = 'testimony --mt-10 --mb-10 contrast--light';
 			$class = $themeClass . ' ' . ( $attributes['className'] ?? '' );
 			if ( ! empty( $attributes['align'] ) ) {
 				$class .= " align{$attributes['align']}";
@@ -174,7 +174,7 @@ function register_blocks( $meta_boxes ) {
 			?>
 			<section id="<?= $id ?>" class="<?= $t_background_class ? $t_background_class : 'bg-action-1 default' ?> <?= $class ?> <?= $animation_class ?>" <?= $data ?>>
 
-				<div class="container-fluid p-8">
+				<div class="container-fluid p-3 p-sm-4 p-md-8">
 					<div class="row">
 						<div class="col-md-4">
 							<h6 class="subline <?= $t_text_class ? $t_text_class : 'text-dark default' ?>"><?= $t_title ? $t_title : 'Témoignage' ?></h6>
@@ -325,7 +325,7 @@ function register_blocks( $meta_boxes ) {
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="background-color: var(--waff-action-3-lighten-3); color: var(--waff-action-3-inverse);">
 
-				<div class="container-fluid p-8">
+				<div class="container-fluid p-3 p-sm-4 p-md-8">
 
 					<div class="d-flex justify-content-between align-items-center mb-6">
 						<hgroup>
@@ -510,10 +510,10 @@ function register_blocks( $meta_boxes ) {
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les compétitions à venir</h6>
 								<a href="#" class="headflat fw-light ps-4" <?= $preview ? 'style="display:none;"' : ''; ?>>Toutes <i class="bi bi-arrow-right-short"></i></a>
-								<h6 class="headflat text-color-accent-1 fw-light ms-auto"><?= date_i18n('F Y'); ?></h6>
+								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none d-sm-block"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 
-							<div class="row">
+							<div class="row row-cols-1 row-cols-md-1 g-4">
 								<div class="col">
 
 									<div class="row row-cols-1 row-cols-md-1 g-4">

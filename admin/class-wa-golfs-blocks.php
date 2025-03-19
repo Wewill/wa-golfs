@@ -513,7 +513,7 @@ function register_blocks( $meta_boxes ) {
 								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none d-sm-block"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 
-							<div class="row row-cols-1 row-cols-md-1 g-4">
+							<div class="row row-cols-1 row-cols-md-2 g-4">
 								<div class="col">
 
 									<div class="row row-cols-1 row-cols-md-1 g-4">

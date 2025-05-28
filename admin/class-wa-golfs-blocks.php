@@ -164,7 +164,7 @@ function register_blocks( $meta_boxes ) {
 			$t_title = mb_get_block_field( $prefix . 't_title');
 
 			// Display notice if block isn't full
-			if ( $attributes['align'] !== 'full' && current_user_can('administrator') && !is_front_page() ) {
+			if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
 				echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
 					<strong>Oh snap!</strong> '
 					. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
@@ -174,7 +174,7 @@ function register_blocks( $meta_boxes ) {
 			?>
 			<section id="<?= $id ?>" class="<?= $t_background_class ? $t_background_class : 'bg-action-1 default' ?> <?= $class ?> <?= $animation_class ?>" <?= $data ?>>
 
-				<div class="container-fluid p-3 p-sm-4 p-md-8">
+				<div class="container-fluid p-8">
 					<div class="row">
 						<div class="col-md-4">
 							<h6 class="subline <?= $t_text_class ? $t_text_class : 'text-dark default' ?>"><?= $t_title ? $t_title : 'Témoignage' ?></h6>
@@ -315,7 +315,7 @@ function register_blocks( $meta_boxes ) {
 			$c_display = mb_get_block_field( $prefix . 'c_display');
 
 			// Display notice if block isn't full
-			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') && !is_front_page() ) {
+			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
 			// 	echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
 			// 		<strong>Oh snap!</strong> '
 			// 		. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
@@ -325,7 +325,7 @@ function register_blocks( $meta_boxes ) {
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="background-color: var(--waff-action-3-lighten-3); color: var(--waff-action-3-inverse);">
 
-				<div class="container-fluid p-3 p-sm-4 p-md-8">
+				<div class="container-fluid p-8">
 
 					<div class="d-flex justify-content-between align-items-center mb-6">
 						<hgroup>
@@ -474,7 +474,7 @@ function register_blocks( $meta_boxes ) {
 				$id = $attributes['data']['name'] . '-';
 			}
 			$id .= ( $attributes['id'] && $attributes['id'] !== $attributes['name']) ? $attributes['id'] : wp_generate_uuid4();
-			if ( $attributes['anchor'] ) {
+			if ( ! empty( $attributes['anchor'] ) ) {
 				$id = $attributes['anchor'];
 			}
 			// Block class
@@ -494,7 +494,7 @@ function register_blocks( $meta_boxes ) {
 			$co_display = mb_get_block_field( $prefix . 'co_display');
 
 			// Display notice if block isn't full
-			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') && !is_front_page() ) {
+			// if ( $attributes['align'] !== 'full' && current_user_can('administrator') ) {
 			// 	echo '<div class="alert alert-dismissible alert-warning fade show" role="alert">
 			// 		<strong>Oh snap!</strong> '
 			// 		. esc_html__( 'For a better experience, this block renders better in full size.', 'wa-golfs' ) .
@@ -509,11 +509,11 @@ function register_blocks( $meta_boxes ) {
 						<div class="col"  <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>> 
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les compétitions à venir</h6>
-								<a href="#" class="headflat fw-light ps-4" <?= $preview ? 'style="display:none;"' : ''; ?>>Toutes <i class="bi bi-arrow-right-short"></i></a>
-								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none d-sm-block"><?= date_i18n('F Y'); ?></h6>
+								<a href="/competitions" class="headflat fw-light ps-4" <?= $preview ? 'style="display:none;"' : ''; ?>>Toutes <i class="bi bi-arrow-right-short"></i></a>
+								<h6 class="headflat text-color-accent-1 fw-light ms-auto"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 
-							<div class="row row-cols-1 row-cols-md-2 g-4">
+							<div class="row">
 								<div class="col">
 
 									<div class="row row-cols-1 row-cols-md-1 g-4">
@@ -569,7 +569,7 @@ function register_blocks( $meta_boxes ) {
 						<div class="col" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les résultats</h6>
-								<a href="#" class="headflat fw-light ps-4 me-auto" <?= $preview ? 'style="display:none;"' : ''; ?>>Tous <i class="bi bi-arrow-right-short"></i></a>
+								<a href="/competitions" class="headflat fw-light ps-4 me-auto" <?= $preview ? 'style="display:none;"' : ''; ?>>Tous <i class="bi bi-arrow-right-short"></i></a>
 								<h6 class="headflat text-color-accent-1 fw-light ms-auto d-none"><?= date_i18n('F Y'); ?></h6>
 							</hgroup>
 

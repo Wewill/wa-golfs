@@ -457,6 +457,7 @@ function register_blocks( $meta_boxes ) {
 
 			// Use constants
 			$stateColors = STATE_COLORS;
+			$stateLabels = STATE_LABELS;
 
 			$prefix = 'waff_golfs_';
 			// Fields data.
@@ -509,12 +510,12 @@ function register_blocks( $meta_boxes ) {
 			// 	</div>';
 			// }
 
-			?>
+			if ($co_display === 'featured' ) : ?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="--background-color: var(--waff-action-3-lighten-3); --color: var(--waff-action-3-inverse);">
 				<div class="container-fluid" <?= $preview ? 'style="padding:3rem;"' : ''; ?>>
 					<div class="row row-cols-1 row-cols-md-2 mt-4 mb-4" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 
-						<div class="col"  <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>> 
+						<div class="col" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>> 
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-color-accent-1">Les compétitions à venir</h6>
 								<a href="/competitions" class="headflat fw-light ps-4" <?= $preview ? 'style="display:none;"' : ''; ?>>Toutes <i class="bi bi-arrow-right-short"></i></a>
@@ -523,7 +524,6 @@ function register_blocks( $meta_boxes ) {
 
 							<div class="row row-cols-1 row-cols-md-2 g-4">
 								<div class="col">
-
 									<div class="row row-cols-1 row-cols-md-1 g-4">
 										<?php
 										$paged_upcoming = (get_query_var('paged_upcoming')) ? get_query_var('paged_upcoming') : 1;
@@ -587,19 +587,6 @@ function register_blocks( $meta_boxes ) {
 											wp_reset_postdata();
 										endif;
 										?>
-									<style>
-										.page-numbers {
-											display: inline-block;
-											padding: 0.25rem 0.65rem;
-											margin: 0 0.25rem;
-											border-radius: 0.25rem;
-											background-color: var(--waff-action-3-inverse-trans-4);
-											color: var(--waff-action-3-inverse);
-										}
-										a.page-numbers {
-											background-color: var(--waff-action-3-inverse-trans-3);
-										}
-									</style>
 									</div>
 								</div>
 								<div class="col">
@@ -701,17 +688,276 @@ function register_blocks( $meta_boxes ) {
 					</div>
 				</div>				
 			</section>
+			<?php else : ?>
+			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="--background-color: var(--waff-action-3-lighten-3); --color: var(--waff-action-3-inverse);">
+				<div class="container-fluid" <?= $preview ? 'style="padding:3rem;"' : ''; ?>>
+
+					<div class="row mt-4 mb-0" <?= $preview ? 'style="display:flex;"' : ''; ?>>
+
+						<div class="col" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
+							<h2><?= esc_html__( 'Toutes les compétitions', 'wa-golfs' ); ?></h2>
+							<p class="text-muted"><?= esc_html__( 'Toutes les compétitions passées et à venir.', 'wa-golfs' ); ?></p>
+
+							<!-- Anchor menu -->
+							<nav class="mt-4">
+								<ul class="nav nav-pills gap-2">
+									<li class="nav-item">
+										<a class="nav-link btn btn-color-accent-1" href="#competitions-upcoming"><?= esc_html__('Les compétitions à venir', 'wa-golfs'); ?></a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link btn btn-action-3" href="#competitions-results"><?= esc_html__('Les résultats', 'wa-golfs'); ?></a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="col-4">
+							<div id="competitions-calendar"></div>
+						</div>		
+
+					</div>
+
+					<div class="mb-4" <?= $preview ? 'style="display:flex;"' : ''; ?>>
+
+						<div class="mb-4" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>> 
+							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
+								<h6 class="headflat text-color-accent-1" id="competitions-upcoming">Les compétitions à venir</h6>
+							</hgroup>
+
+							<div class="row row-cols-1 row-cols-md-3 g-4">
+								<?php
+								$paged_upcoming = (get_query_var('paged_upcoming')) ? get_query_var('paged_upcoming') : 1;
+								$args = array(
+									'post_type' => 'competitions',
+									'posts_per_page' => 20,
+									'paged' => $paged_upcoming,
+									'meta_query' => array(
+										array(
+											'key' => 'c_state',
+											'value' => array('pending', 'current'),
+											'compare' => 'IN',
+										),
+									),
+									'date_query' => array(
+										array(
+											'column' => 'post_date_gmt',
+											'year'   => date('Y'),
+											'month'  => date('n'),
+											'day'    => date('j'),
+										),
+									),		
+									'orderby' => 'meta_value',
+									'meta_key' => 'c_date',
+									'order' => 'ASC',
+								);
+								$competition_query = new WP_Query( $args );
+								if ( $competition_query->have_posts() ) :
+									while ( $competition_query->have_posts() ) : $competition_query->the_post();
+										$c_introduction 			= get_post_meta( get_the_ID(), 'c_introduction', true );
+										$c_media_url 				= get_the_post_thumbnail_url( get_the_ID(), 'medium' );
+										$c_media_thumbnail_url		= get_the_post_thumbnail_url( get_the_ID(), 'thumbnail' );
+										$c_image = $c_media_thumbnail_url ? '<div class="d-flex flex-center rounded-4 bg-color-layout overflow-hidden"><img decoding="async" src="'.$c_media_thumbnail_url.'" class="img-fluid fit-image rounded-4 img-transition-scale --h-100-px w-150-px h-auto"></div>' : '<div class="d-flex flex-center rounded-4 bg-color-layout"><img decoding="async" src="https://placehold.co/300x300/white/white" class="img-fluid fit-image rounded-4 img-transition-scale --h-100-px --w-100-px op-0"><i class="position-absolute bi bi-image text-action-3"></i></div>';
+										$c_last_updated 			=  __('Last update', 'waff') . " " . human_time_diff(get_post_time('U'), current_time('timestamp')) . " " . __('ago', 'waff');
+										$c_date 					= get_post_meta( get_the_ID(), 'c_date', true );
+										$c_state 					= get_post_meta( get_the_ID(), 'c_state', true );
+
+										$c_competition_departures 	= get_post_meta( get_the_ID(), 'c_competition_departures', true );
+										$c_competition_results_brut = get_post_meta( get_the_ID(), 'c_competition_results_brut', true );
+										$c_competition_results_net 	= get_post_meta( get_the_ID(), 'c_competition_results_net', true );
+
+										$competition_date = get_post_meta(get_the_ID(), 'c_date', true); 
+										$competition_date_string = wp_kses(
+											sprintf(
+												'<time datetime="%1$s">%2$s</time>',
+												esc_attr($competition_date),
+												sprintf(
+													__('<strong>Le %1$s</strong>, à %2$s', 'waff'),
+													date_i18n(get_option('date_format'), strtotime($competition_date)),
+													date_i18n(get_option('time_format'), strtotime($competition_date))
+												)
+											),
+											array_merge(
+												wp_kses_allowed_html('post'),
+												array(
+													'time' => array(
+														'datetime' => true,
+													),
+												)
+											)
+										);
+
+									?>
+									<div class="col mt-0">
+										<div class="card border-0 p-4 h-100" style="background-color:var(--waff-action-3-lighten-3);">
+											<div class="d-flex g-0 align-items-center">
+												<div class="w-150-px order-first">
+													<?= $c_image ?>
+												</div>
+												<div class="w-100">
+													<div class="card-body">
+														<span class="fs-xs">
+															<span class="state-label" style="color:<?= esc_attr($stateColors[$c_state]['textColor']); ?>;">
+																<span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:2px;margin-left:2px;background-color:<?= esc_attr($stateColors[$c_state]['textColor']); ?>;"></span>
+																<?= esc_html($stateLabels[$c_state]['label']); ?>
+															</span>
+															<?= $c_competition_departures ? '<i class="bi bi-person-lines-fill ms-1"></i> Départs' : '' ?>
+															<?= ($c_competition_results_brut || $c_competition_results_net) ? '<i class="bi bi-check-circle-fill ms-1"></i> Résultats' : '' ?>
+														</span>
+														<?= the_title('<h4 class="post__title entry-title m-0 lh-1 mt-2 mb-1 fw-bold" style="margin-left: -2px !important;"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></h4>', false); ?>
+														<p class="competition-date --muted mb-0"><i class="bi bi-calendar-event"></i> <?= $competition_date_string ?></p>
+														<p class="card-text fs-sm mb-0"><?= esc_html(wp_trim_words(get_the_excerpt() ?: $c_introduction, 15, ' &hellip;')) ?></p>
+														<p class="card-text --mt-n2 mt-3"><small class="text-body-secondary"><?= $c_last_updated ?></small></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<?php
+
+									endwhile;
+									// Pagination
+									$big = 999999999; // need an unlikely integer
+									$pagination_links_upcoming = paginate_links( array(
+										'base'    => str_replace( $big, '%#%', esc_url( add_query_arg( 'paged_upcoming', $big ) ) ),
+										'format'  => '',
+										'current' => max( 1, $paged_upcoming ),
+										'total'   => $competition_query->max_num_pages,
+										'add_args' => array('paged_ended' => $paged_ended), // preserve other pagination in URL
+										'type'    => 'list',
+										'prev_text' => '&laquo;',
+										'next_text' => '&raquo;',
+									) );
+									if ( $pagination_links_upcoming ) {
+										// Add classes to <ul>
+										$pagination_links_upcoming = str_replace(
+											'<ul class=\'page-numbers\'>',
+											'<ul class="list-group list-group list-group-horizontal">',
+											$pagination_links_upcoming
+										);
+										echo '<nav class="mt-1 px-1" aria-label="Navigation des competitions à venir">' . $pagination_links_upcoming . '</nav>';
+									}
+									wp_reset_postdata();
+								endif;
+								?>
+							</div>
+						</div>
+
+						<div class="bg-color-layout f-w-gutter pt-4 pb-4" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
+							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
+								<h6 class="headflat text-action-2" id="competitions-results">Les résultats</h6>
+							</hgroup>
+
+							<div class="row row-cols-1 row-cols-md-2 g-4">
+								<?php
+								$paged_ended = (get_query_var('paged_ended')) ? get_query_var('paged_ended') : 1;
+								$args = array(
+									'post_type' => 'competitions',
+									'posts_per_page' => 6,
+									'paged' => $paged_ended,
+									'meta_query' => array(
+										'relation' => 'AND',
+										array(
+											'key' => 'c_state',
+											'value' => 'ended',
+											'compare' => '=',
+										),
+										array(
+											'relation' => 'OR',
+											array(
+												'key'     => 'c_competition_results_brut',
+												'value'   => '',
+												'compare' => '!=',
+											),
+											array(
+												'key'     => 'c_competition_results_net',
+												'value'   => '',
+												'compare' => '!=',
+											),
+										),
+									),
+									'date_query' => array(
+										array(
+											'column' => 'post_date_gmt',
+											'after' => '1 year ago',
+										),
+									),		
+									'orderby' => 'meta_value',
+									'meta_key' => 'c_date',
+									'order' => 'DESC',
+								);
+								$ended_competition_query = new WP_Query( $args );
+								if ( $ended_competition_query->have_posts() ) :
+									while ( $ended_competition_query->have_posts() ) : $ended_competition_query->the_post();
+										$c_date = get_post_meta( get_the_ID(), 'c_date', true );
+										?>
+										<div class="col mt-0">
+											<h5 class="mb-2"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
+												<span class="dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: 2px; margin-left: 2px; background-color: <?php echo esc_attr( $stateColors[get_post_meta(get_the_ID(), 'c_state', true)]['textColor'] ); ?>;"></span>
+											</h5>
+											<p class="text-color-accent-1"><span class="fw-bold text-action-3"><?php echo date_i18n( 'j F Y', strtotime( $c_date ) ); ?></span> <?= wp_trim_words( get_the_excerpt(), 17, '...' ); ?></p>
+										</div>
+										<?php
+									endwhile;
+									// Pagination
+									$big = 999999999; // need an unlikely integer
+									$pagination_links_ended = paginate_links( array(
+										'base' => add_query_arg('paged_ended', '%#%'),
+										'format'  => '',
+										'current' => max( 1, $paged_ended ),
+										'total'   => $ended_competition_query->max_num_pages,
+										'add_args' => array('paged_upcoming' => $paged_upcoming), // preserve other pagination in URL
+										'type'    => 'list',
+										'prev_text' => '&laquo;',
+										'next_text' => '&raquo;'
+									) );
+									if ( $pagination_links_ended ) {
+										// Add classes to <ul>
+										$pagination_links_ended = str_replace(
+											'<ul class=\'page-numbers\'>',
+											'<ul class="list-group list-group list-group-horizontal">',
+											$pagination_links_ended
+										);
+										echo '<nav class="mt-1 px-1" aria-label="Navigation des résultats de compétitions">' . $pagination_links_ended . '</nav>';
+									}
+									wp_reset_postdata();
+								endif;
+								?>
+							</div>
+						</div>
+
+					</div>
+				</div>				
+			</section>
+			<?php endif; ?>
+			<style>
+				.page-numbers {
+					display: inline-block;
+					padding: 0.25rem 0.65rem;
+					margin: 0 0.25rem;
+					border-radius: 0.25rem;
+					background-color: var(--waff-action-3-inverse-trans-4);
+					color: var(--waff-action-3-inverse);
+				}
+				a.page-numbers {
+					background-color: var(--waff-action-3-inverse-trans-3);
+				}
+			</style>
 			<script>
 			// Convert PHP array to JS object
 			const stateColors = <?= json_encode(STATE_COLORS); ?>;
 			const stateLabels = <?= json_encode(STATE_LABELS); ?>;		
+			const coDisplay = <?= json_encode($co_display); ?>;		
 			// Initialize FullCalendar	
 			document.addEventListener('DOMContentLoaded', function() {
 				var calendarEl = document.getElementById('competitions-calendar');
 				var calendar = new FullCalendar.Calendar(calendarEl, {
 					initialView: 'dayGridMonth',
 					locale: "fr", // Set the locale to French
-					headerToolbar: false, // Hide the toolbar
+					headerToolbar: coDisplay === 'featured' ? false : {
+      left: "prev,next today",
+      center: "",
+      right: "title",
+    }, // Hide the toolbar
 					height: 'auto', // Adjust the height to display the full calendar
 					contentHeight: 'auto', // Ensure the content height is auto
 					dayHeaders: false, // Hide days

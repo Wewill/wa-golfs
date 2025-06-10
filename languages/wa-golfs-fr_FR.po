@@ -1,0 +1,875 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WA GOLFS Global functions\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-06 14:52+0000\n"
+"PO-Revision-Date: 2025-06-10 09:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.1; php-8.4.3\n"
+"X-Domain: wa-golfs"
+
+#: admin/class-wa-golfs-taxonomy.php:35
+msgid "&larr; Go to Competition categories"
+msgstr "&larr; Aller aux catégories de compétition"
+
+#: admin/class-wa-golfs-blocks.php:417
+msgid "(GOLF) Competitions"
+msgstr "(GOLF) Compétitions"
+
+#: admin/class-wa-golfs-blocks.php:228
+msgid "(GOLF) Courses"
+msgstr "(GOLF) Parcours"
+
+#: admin/class-wa-golfs-blocks.php:87
+msgid "(GOLF) Testimony"
+msgstr "(GOLF) Témoignages"
+
+#: admin/class-wa-golfs-fields.php:224
+msgid "<b>Featured image</b> please choose an image below on side panel."
+msgstr ""
+"<b>Image en avant</b> veuillez choisir une image ci-dessous sur le panneau "
+"latéral."
+
+#: admin/class-wa-golfs-fields.php:255
+msgid "<span class=\"important\">Maximum 10 files.</span>"
+msgstr "<span class=\"important\">Maximum 10 fichiers.</span>"
+
+#: admin/class-wa-golfs-fields.php:231
+msgid "<span class=\"important\">Maximum 20 images.</span>"
+msgstr "<span class=\"important\">Maximum 20 images.</span>"
+
+#: admin/class-wa-golfs-fields.php:210
+msgid ""
+"<span class=\"label\">TIPS</span> Markdown is available : *italic* (Command "
+"+ b) **bold** (Command + i) ***label*** (Command + Shift + L"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"A plugin to add \"parcours\", \"compétition\", testimony of \"le Golf de "
+"Salouël\""
+msgstr ""
+"Une extension pour ajouter \"parcours\", \"compétition\", témoignage du "
+"\"Golf de Salouël\""
+
+#: admin/class-wa-golfs-register.php:15 admin/class-wa-golfs-register.php:117
+#: admin/class-wa-golfs-register.php:184
+msgid "Add New"
+msgstr "Ajouter nouveau"
+
+#: admin/class-wa-golfs-register.php:16
+msgid "Add New Competition"
+msgstr "Ajouter compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:24
+msgid "Add New Competition category"
+msgstr "Ajouter nouvelle catégorie compétition "
+
+#: admin/class-wa-golfs-register.php:118
+msgid "Add New Course"
+msgstr "Ajouter Parcours"
+
+#: admin/class-wa-golfs-register.php:185
+msgid "Add New Testimony"
+msgstr "Ajouter Témoignage"
+
+#: admin/class-wa-golfs-taxonomy.php:27
+msgid "Add or remove competition categorys"
+msgstr "Ajouter ou supprimer des catégories de compétition"
+
+#: admin/class-wa-golfs-blocks.php:273 admin/class-wa-golfs-blocks.php:442
+msgid "All"
+msgstr "Tout"
+
+#: admin/class-wa-golfs-filters.php:31
+#, php-format
+msgid "All %s"
+msgstr "Tout %s"
+
+#: admin/class-wa-golfs-taxonomy.php:18
+msgid "All Competition categories"
+msgstr "Toutes les catégories de compétition"
+
+#: admin/class-wa-golfs-register.php:25
+msgid "All Competitions"
+msgstr "Toutes les compétitions"
+
+#: admin/class-wa-golfs-register.php:127
+msgid "All Courses"
+msgstr "Tous les parcours"
+
+#: admin/class-wa-golfs-filters.php:72
+msgid "All States"
+msgstr "Tous les états"
+
+#: admin/class-wa-golfs-register.php:194
+msgid "All Testimonies"
+msgstr "Tous les témoignages"
+
+#: admin/class-wa-golfs-fields.php:186
+msgid "Altitude"
+msgstr "Altitude"
+
+#: admin/class-wa-golfs-blocks.php:258
+msgid "An awesome subtitle"
+msgstr "Un sous-titre génial"
+
+#: admin/blocks/build/block1/block.json:1 admin/blocks/src/block1/block.json:1
+msgctxt "block description"
+msgid "A block designed for single directory pages."
+msgstr "Un bloc conçu pour les pages d'annuaire individuelles."
+
+#: admin/blocks/build/block1/block.json:1 admin/blocks/src/block1/block.json:1
+msgctxt "block title"
+msgid "WA GOLFS directory block"
+msgstr "Bloc d'annuaire WA GOLFS"
+
+#: admin/class-wa-golfs-pages.php:14 admin/class-wa-golfs-pages.php:15
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: admin/class-wa-golfs-taxonomy.php:28
+msgid "Choose most used competition categorys"
+msgstr "Choisir les catégories de compétition les plus utilisées"
+
+#: admin/class-wa-golfs-fields.php:233
+msgid "Choose one or many image.s"
+msgstr "Choisissez une ou plusieurs images"
+
+#: admin/class-wa-golfs-fields.php:118
+msgid "Claude Dupont"
+msgstr "Claude Dupont"
+
+#: admin/class-wa-golfs-register.php:14
+msgid "Competition"
+msgstr "Compétition"
+
+#: admin/class-wa-golfs-register.php:26
+msgid "Competition Archives"
+msgstr "Archives des compétitions"
+
+#: admin/class-wa-golfs-register.php:27
+msgid "Competition Attributes"
+msgstr "Attributs de la compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:13 admin/class-wa-golfs-taxonomy.php:15
+#: admin/class-wa-golfs-taxonomy.php:38
+msgid "Competition categories"
+msgstr "Catégories de compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:33
+msgid "Competition categories list"
+msgstr "Liste des catégories de compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:32
+msgid "Competition categories list pagination"
+msgstr "Pagination de la liste des catégories de compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:14
+msgid "Competition category"
+msgstr "Catégorie de compétition"
+
+#: admin/class-wa-golfs-columns.php:133
+msgid "Competition date"
+msgstr "Date de la compétition"
+
+#: admin/class-wa-golfs-fields.php:53
+msgid "Competition departures"
+msgstr "Départs de la compétition"
+
+#: admin/class-wa-golfs-register.php:40
+msgid "Competition published privately."
+msgstr "Compétition publiée en privé."
+
+#: admin/class-wa-golfs-register.php:39
+msgid "Competition published."
+msgstr "Compétition publiée."
+
+#: admin/class-wa-golfs-fields.php:69
+msgid "Competition results (brut)"
+msgstr "Résultats de la compétition (brut)"
+
+#: admin/class-wa-golfs-fields.php:84
+msgid "Competition results (net)"
+msgstr "Résultats de la compétition (net)"
+
+#: admin/class-wa-golfs-register.php:41
+msgid "Competition reverted to draft."
+msgstr "Compétition repassée en brouillon."
+
+#: admin/class-wa-golfs-register.php:42
+msgid "Competition scheduled."
+msgstr "Compétition planifiée."
+
+#: admin/class-wa-golfs-register.php:43
+msgid "Competition updated."
+msgstr "Compétition mise à jour."
+
+#: admin/class-wa-golfs-register.php:13 admin/class-wa-golfs-register.php:34
+#: admin/class-wa-golfs-register.php:47
+msgid "Competitions"
+msgstr "Compétitions"
+
+#: admin/class-wa-golfs-fields.php:22
+msgid "Competitions > General"
+msgstr "Compétitions > Général"
+
+#: admin/class-wa-golfs-pages.php:24
+msgid "Competitions Calendar"
+msgstr "Calendrier des compétitions"
+
+#: admin/class-wa-golfs-register.php:38
+msgid "Competitions list"
+msgstr "Liste des compétitions"
+
+#: admin/class-wa-golfs-register.php:37
+msgid "Competitions list navigation"
+msgstr "Navigation dans la liste des compétitions"
+
+#: admin/class-wa-golfs-register.php:116
+msgid "Course"
+msgstr "Parcours"
+
+#: admin/class-wa-golfs-register.php:128
+msgid "Course Archives"
+msgstr "Archives des parcours"
+
+#: admin/class-wa-golfs-register.php:129
+msgid "Course Attributes"
+msgstr "Attributs du parcours"
+
+#: admin/class-wa-golfs-fields.php:192
+msgid "Course map"
+msgstr "Carte du parcours"
+
+#: admin/class-wa-golfs-register.php:142
+msgid "Course published privately."
+msgstr "Parcours publié en privé."
+
+#: admin/class-wa-golfs-register.php:141
+msgid "Course published."
+msgstr "Parcours publié."
+
+#: admin/class-wa-golfs-register.php:143
+msgid "Course reverted to draft."
+msgstr "Parcours repassé en brouillon."
+
+#: admin/class-wa-golfs-register.php:144
+msgid "Course scheduled."
+msgstr "Parcours planifié."
+
+#: admin/class-wa-golfs-register.php:145
+msgid "Course updated."
+msgstr "Parcours mis à jour."
+
+#: admin/class-wa-golfs-fields.php:137
+msgid "Course › General"
+msgstr "Parcours › Général"
+
+#: admin/class-wa-golfs-fields.php:218
+msgid "Course › Medias"
+msgstr "Parcours › Médias"
+
+#: admin/class-wa-golfs-register.php:115 admin/class-wa-golfs-register.php:136
+#: admin/class-wa-golfs-register.php:148
+msgid "Courses"
+msgstr "Parcours"
+
+#: admin/class-wa-golfs-register.php:140
+msgid "Courses list"
+msgstr "Liste parcours"
+
+#: admin/class-wa-golfs-register.php:139
+msgid "Courses list navigation"
+msgstr ""
+
+#: admin/class-wa-golfs-blocks.php:115
+msgid "CSS background color"
+msgstr "Couleur de fond CSS"
+
+#: admin/class-wa-golfs-blocks.php:121
+msgid "CSS text color"
+msgstr "Couleur du texte CSS"
+
+#: admin/class-wa-golfs-columns.php:134
+msgid "Data"
+msgstr "Donnée"
+
+#: admin/class-wa-golfs-fields.php:37 admin/class-wa-golfs-export.php:86
+msgid "Date"
+msgstr "Date"
+
+#: admin/class-wa-golfs-general.php:34
+msgid "DEV / BAC À SABLE"
+msgstr "DEV / BAC À SABLE"
+
+#: admin/class-wa-golfs-blocks.php:270 admin/class-wa-golfs-blocks.php:439
+msgid "Display"
+msgstr "Afficher"
+
+#: admin/class-wa-golfs-blocks.php:418
+msgid "Display featured month competions and results."
+msgstr "Afficher les compétitions du mois en vedette et les résultats."
+
+#: admin/class-wa-golfs-blocks.php:229
+msgid "Display featured random courses or all courses."
+msgstr "Afficher des parcours en vedette au hasard ou tous les parcours."
+
+#: admin/class-wa-golfs-blocks.php:88
+msgid "Display random testimonies."
+msgstr "Afficher des témoignages aléatoires."
+
+#: admin/class-wa-golfs-fields.php:148
+msgid "Distances"
+msgstr "Distances"
+
+#: admin/class-wa-golfs-register.php:17
+msgid "Edit Competition"
+msgstr "Modifier la compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:21
+msgid "Edit Competition category"
+msgstr "Modifier la catégorie de compétition"
+
+#: admin/class-wa-golfs-register.php:119
+msgid "Edit Course"
+msgstr "Modifier le parcours"
+
+#: admin/class-wa-golfs-register.php:186
+msgid "Edit Testimony"
+msgstr "Modifier le témoignage"
+
+#: admin/class-wa-golfs-export.php:80
+msgid "Email"
+msgstr "Email"
+
+#: admin/class-wa-golfs-fields.php:32
+msgid "En cours"
+msgstr "En cours"
+
+#: admin/class-wa-golfs-fields.php:159
+msgid "Exemple : Blancs: 103 m - Jaunes: 101 m - Bleus: 93 m - Rouges: 90 m"
+msgstr ""
+"Exemple : Blancs : 103 m - Jaunes : 101 m - Bleus : 93 m - Rouges : 90 m"
+
+#: admin/class-wa-golfs-export.php:45
+msgid "Export"
+msgstr "Exporter"
+
+#: admin/class-wa-golfs-export.php:33
+msgid "export"
+msgstr "exporter"
+
+#: admin/class-wa-golfs-export.php:22 admin/class-wa-golfs-export.php:23
+msgid "Export members"
+msgstr "Exporter les membres"
+
+#: admin/class-wa-golfs-columns.php:135 admin/class-wa-golfs-fields.php:47
+msgid "External link"
+msgstr "Lien externe"
+
+#: admin/class-wa-golfs-blocks.php:272 admin/class-wa-golfs-blocks.php:441
+msgid "Featured"
+msgstr "En vedette"
+
+#: admin/class-wa-golfs-blocks.php:251
+msgid "Featured courses"
+msgstr "Parcours en vedette"
+
+#: admin/class-wa-golfs-register.php:30 admin/class-wa-golfs-register.php:132
+#: admin/class-wa-golfs-register.php:199
+msgid "Featured image"
+msgstr "Image en vedette"
+
+#: admin/class-wa-golfs-fields.php:44
+msgid "FF Golf"
+msgstr "FF Golf"
+
+#: admin/class-wa-golfs-fields.php:252
+msgid "Files"
+msgstr "Fichiers"
+
+#: admin/class-wa-golfs-fields.php:50
+msgid "Fill in ffgolf external link to competition here."
+msgstr "Renseignez ici le lien externe ffgolf vers la compétition."
+
+#: admin/class-wa-golfs-fields.php:189
+msgid "Fill in the altitude in meters for the course here."
+msgstr "Indiquez ici l'altitude en mètres du parcours."
+
+#: admin/class-wa-golfs-fields.php:145
+msgid "Fill in the course number."
+msgstr "Indiquez le numéro du parcours."
+
+#: admin/class-wa-golfs-fields.php:40
+msgid "Fill in the date & time of competition here."
+msgstr "Indiquez ici la date et l'heure de la compétition."
+
+#: admin/class-wa-golfs-fields.php:181
+msgid "Fill in the green depth for the course here."
+msgstr "Indiquez ici la profondeur du green pour le parcours."
+
+#: admin/class-wa-golfs-fields.php:173
+msgid "Fill in the handicap for the course here."
+msgstr "Indiquez ici le handicap pour le parcours."
+
+#: admin/class-wa-golfs-fields.php:117
+msgid "Fill in the name of the person who wrote the testimony here."
+msgstr "Indiquez ici le nom de la personne ayant rédigé le témoignage."
+
+#: admin/class-wa-golfs-fields.php:165
+msgid "Fill in the number of stroke for the course here."
+msgstr "Indiquez ici le nombre de coups pour le parcours."
+
+#: admin/class-wa-golfs-fields.php:124
+msgid ""
+"Fill in the position or function of the person who wrote the testimony here."
+msgstr ""
+"Indiquez ici la fonction ou le poste de la personne ayant rédigé le "
+"témoignage."
+
+#: admin/class-wa-golfs-fields.php:151
+msgid "Fill in the specific distances for the course here."
+msgstr "Indiquez ici les distances spécifiques pour le parcours."
+
+#: admin/class-wa-golfs-fields.php:209
+msgid "Fill with simple text"
+msgstr "Remplir avec du texte simple"
+
+#: admin/class-wa-golfs-taxonomy.php:31
+msgid "Filter by competition category"
+msgstr "Filtrer par catégorie de compétition"
+
+#: admin/class-wa-golfs-register.php:36
+msgid "Filter competitions date"
+msgstr "Filtrer les compétitions par date"
+
+#: admin/class-wa-golfs-register.php:35
+msgid "Filter competitions list"
+msgstr "Filtrer la liste des compétitions"
+
+#: admin/class-wa-golfs-register.php:138
+msgid "Filter courses date"
+msgstr "Filtrer les parcours par date"
+
+#: admin/class-wa-golfs-register.php:137
+msgid "Filter courses list"
+msgstr "Filtrer la liste des parcours"
+
+#: admin/class-wa-golfs-register.php:205
+msgid "Filter testimonies date"
+msgstr "Filtrer les témoignages par date"
+
+#: admin/class-wa-golfs-register.php:204
+msgid "Filter testimonies list"
+msgstr "Filtrer la liste des témoignages"
+
+#: admin/class-wa-golfs-export.php:78
+msgid "First name"
+msgstr "Prénom"
+
+#: admin/class-wa-golfs-blocks.php:170
+msgid "For a better experience, this block renders better in full size."
+msgstr "Pour une meilleure expérience, ce bloc s'affiche mieux en plein écran."
+
+#: admin/class-wa-golfs-fields.php:228
+msgid "Gallery files"
+msgstr "Fichiers de la galerie"
+
+#: admin/class-wa-golfs-export.php:82
+msgid "Geography"
+msgstr "Géographie"
+
+#: admin/class-wa-golfs-fields.php:182
+msgid "GREEN"
+msgstr "GREEN"
+
+#: admin/class-wa-golfs-columns.php:198 admin/class-wa-golfs-fields.php:178
+msgid "Green depth"
+msgstr "Profondeur du green"
+
+#: admin/class-wa-golfs-columns.php:197 admin/class-wa-golfs-fields.php:170
+msgid "Handicap"
+msgstr "Handicap"
+
+#: admin/class-wa-golfs-fields.php:174
+msgid "HCP"
+msgstr "HCP"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.wilhemarnoldy.fr"
+msgstr ""
+
+#: admin/class-wa-golfs-export.php:76
+msgid "ID"
+msgstr "ID"
+
+#: admin/class-wa-golfs-register.php:28
+msgid "Insert into competitions"
+msgstr "Insérer dans les compétitions"
+
+#: admin/class-wa-golfs-register.php:130
+msgid "Insert into course"
+msgstr "Insérer dans le parcours"
+
+#: admin/class-wa-golfs-register.php:197
+msgid "Insert into testimony"
+msgstr "Insérer dans le témoignage"
+
+#: admin/class-wa-golfs-fields.php:202
+msgid "Introduction"
+msgstr "Introduction"
+
+#: admin/class-wa-golfs-export.php:79
+msgid "Last name"
+msgstr "Nom"
+
+#: admin/class-wa-golfs-fields.php:210
+msgid "Lead content will be showed after title"
+msgstr "Le contenu principal sera affiché après le titre"
+
+#: admin/class-wa-golfs-taxonomy.php:40
+msgid "List competition category of a competition"
+msgstr "Lister les catégories de compétition d'une compétition"
+
+#: admin/class-wa-golfs-general.php:56
+msgid "LIVE"
+msgstr "EN DIRECT"
+
+#: admin/class-wa-golfs-general.php:45
+msgid "LOCAL"
+msgstr "LOCAL"
+
+#: admin/class-wa-golfs-export.php:33
+msgid "Members"
+msgstr "Membres"
+
+#: admin/class-wa-golfs-taxonomy.php:34
+msgid "Most Used"
+msgstr "Les plus utilisées"
+
+#: admin/class-wa-golfs-columns.php:241 admin/class-wa-golfs-fields.php:114
+msgid "Name"
+msgstr "Nom"
+
+#: admin/class-wa-golfs-register.php:18
+msgid "New Competition"
+msgstr "Nouvelle compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:25
+msgid "New Competition category Name"
+msgstr "Nom de la nouvelle catégorie de compétition"
+
+#: admin/class-wa-golfs-register.php:120
+msgid "New Course"
+msgstr "Nouveau parcours"
+
+#: admin/class-wa-golfs-register.php:187
+msgid "New Testimony"
+msgstr "Nouveau témoignage"
+
+#: admin/class-wa-golfs-taxonomy.php:30
+msgid "No competition categories"
+msgstr "Aucune catégorie de compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:29
+msgid "No competition categories found."
+msgstr "Aucune catégorie de compétition trouvée."
+
+#: admin/class-wa-golfs-register.php:23
+msgid "No competitions found in Trash."
+msgstr "Aucune compétition trouvée dans la corbeille."
+
+#: admin/class-wa-golfs-register.php:22
+msgid "No competitions found."
+msgstr "Aucune compétition trouvée."
+
+#: admin/class-wa-golfs-register.php:125
+msgid "No courses found in Trash."
+msgstr "Pas de parcours trouvé."
+
+#: admin/class-wa-golfs-register.php:124
+msgid "No courses found."
+msgstr "Pas de parcours trouvé."
+
+#: admin/class-wa-golfs-register.php:192
+msgid "No testimonies found in Trash."
+msgstr "Aucun témoignage trouvé dans la corbeille."
+
+#: admin/class-wa-golfs-register.php:191
+msgid "No testimonies found."
+msgstr "Aucun témoignage trouvé."
+
+#: admin/class-wa-golfs-fields.php:142
+msgid "Number"
+msgstr "Numéro"
+
+#: admin/class-wa-golfs-columns.php:196 admin/class-wa-golfs-fields.php:162
+msgid "Number of strokes"
+msgstr "Nombre de coups"
+
+#: admin/class-wa-golfs-fields.php:166
+msgid "PAR"
+msgstr "PAR"
+
+#: admin/class-wa-golfs-taxonomy.php:19
+msgid "Parent Competition category"
+msgstr "Catégorie de compétition parente"
+
+#: admin/class-wa-golfs-taxonomy.php:20
+msgid "Parent Competition category:"
+msgstr "Catégorie de compétition parente :"
+
+#: admin/class-wa-golfs-register.php:24
+msgid "Parent Competitions:"
+msgstr "Compétitions parentes :"
+
+#: admin/class-wa-golfs-register.php:126
+msgid "Parent Course:"
+msgstr "Parcours parent:"
+
+#: admin/class-wa-golfs-register.php:193
+msgid "Parent Testimony:"
+msgstr "Témoignage parent :"
+
+#: admin/class-wa-golfs-taxonomy.php:17
+msgid "Popular Competition categories"
+msgstr "Catégories de compétition populaires"
+
+#: admin/class-wa-golfs-fields.php:121
+msgid "Position"
+msgstr "Poste"
+
+#: admin/class-wa-golfs-columns.php:24
+msgid "Posted"
+msgstr "Publié"
+
+#: admin/class-wa-golfs-fields.php:62 admin/class-wa-golfs-fields.php:78
+#: admin/class-wa-golfs-fields.php:93
+msgid "Preview"
+msgstr "Aperçu"
+
+#: admin/class-wa-golfs-export.php:84
+msgid "Profil"
+msgstr "Profil"
+
+#: admin/class-wa-golfs-fields.php:242
+msgid "Recommanded : choose an external video link from online platform"
+msgstr ""
+"Recommandé : choisissez un lien vidéo externe depuis une plateforme en ligne"
+
+#: admin/class-wa-golfs-register.php:32 admin/class-wa-golfs-register.php:134
+#: admin/class-wa-golfs-register.php:201
+msgid "Remove featured image"
+msgstr "Supprimer l'image en vedette"
+
+#: admin/class-wa-golfs-fields.php:125
+msgid "Responsable de golf"
+msgstr "Responsable de golf"
+
+#: admin/class-wa-golfs-taxonomy.php:16
+msgid "Search Competition categories"
+msgstr "Rechercher des catégories de compétition"
+
+#: admin/class-wa-golfs-register.php:21
+msgid "Search Competitions"
+msgstr "Rechercher des compétitions"
+
+#: admin/class-wa-golfs-register.php:123
+msgid "Search Courses"
+msgstr "Rechercher Parcours"
+
+#: admin/class-wa-golfs-register.php:190
+msgid "Search Testimonies"
+msgstr "Rechercher des témoignages"
+
+#: admin/class-wa-golfs-taxonomy.php:26
+msgid "Separate competition categorys with commas"
+msgstr "Séparer les catégories de compétition par des virgules"
+
+#: admin/class-wa-golfs-register.php:31 admin/class-wa-golfs-register.php:133
+#: admin/class-wa-golfs-register.php:200
+msgid "Set featured image"
+msgstr "Définir l'image en vedette"
+
+#: admin/class-wa-golfs-columns.php:132 admin/class-wa-golfs-fields.php:27
+msgid "State"
+msgstr "État"
+
+#: admin/class-wa-golfs-export.php:83
+msgid "Structure"
+msgstr "Structure"
+
+#: admin/class-wa-golfs-blocks.php:256
+msgid "Subtitle (first)"
+msgstr "Sous-titre (premier)"
+
+#: admin/class-wa-golfs-fields.php:33
+msgid "Terminée"
+msgstr "Terminée"
+
+#: admin/class-wa-golfs-register.php:182 admin/class-wa-golfs-register.php:203
+#: admin/class-wa-golfs-register.php:215
+msgid "Testimonies"
+msgstr "Témoignages"
+
+#: admin/class-wa-golfs-register.php:207
+msgid "Testimonies list"
+msgstr "Liste des témoignages"
+
+#: admin/class-wa-golfs-register.php:206
+msgid "Testimonies list navigation"
+msgstr "Navigation dans la liste des témoignages"
+
+#: admin/class-wa-golfs-blocks.php:110 admin/class-wa-golfs-register.php:183
+msgid "Testimony"
+msgstr "Témoignage"
+
+#: admin/class-wa-golfs-register.php:195
+msgid "Testimony Archives"
+msgstr "Archives des témoignages"
+
+#: admin/class-wa-golfs-register.php:196
+msgid "Testimony Attributes"
+msgstr "Attributs du témoignage"
+
+#: admin/class-wa-golfs-columns.php:242
+msgid "Testimony excerpt"
+msgstr "Extrait du témoignage"
+
+#: admin/class-wa-golfs-register.php:209
+msgid "Testimony published privately."
+msgstr "Témoignage publié en privé."
+
+#: admin/class-wa-golfs-register.php:208
+msgid "Testimony published."
+msgstr "Témoignage publié."
+
+#: admin/class-wa-golfs-register.php:210
+msgid "Testimony reverted to draft."
+msgstr "Témoignage repassé en brouillon."
+
+#: admin/class-wa-golfs-register.php:211
+msgid "Testimony scheduled."
+msgstr "Témoignage planifié."
+
+#: admin/class-wa-golfs-register.php:212
+msgid "Testimony updated."
+msgstr "Témoignage mis à jour."
+
+#: admin/class-wa-golfs-fields.php:109
+msgid "Testimony › General"
+msgstr "Témoignage › Général"
+
+#: admin/class-wa-golfs-blocks.php:109 admin/class-wa-golfs-blocks.php:250
+msgid "Title"
+msgstr "Titre"
+
+#: admin/class-wa-golfs-taxonomy.php:23
+msgid "Update Competition category"
+msgstr "Mettre à jour la catégorie de compétition"
+
+#: admin/class-wa-golfs-fields.php:248
+msgid "Upload a video file directly to the media library"
+msgstr "Téléchargez un fichier vidéo directement dans la médiathèque"
+
+#: admin/class-wa-golfs-fields.php:257
+msgid "Upload one or many file.s"
+msgstr "Téléchargez un ou plusieurs fichiers"
+
+#: admin/class-wa-golfs-register.php:29
+msgid "Uploaded to this competition"
+msgstr "Téléchargé pour cette compétition"
+
+#: admin/class-wa-golfs-register.php:131
+msgid "Uploaded to this course"
+msgstr "Téléchargé pour ce parcours"
+
+#: admin/class-wa-golfs-register.php:198
+msgid "Uploaded to this testimony"
+msgstr "Téléchargé pour ce témoignage"
+
+#: admin/class-wa-golfs-register.php:33 admin/class-wa-golfs-register.php:135
+#: admin/class-wa-golfs-register.php:202
+msgid "Use as featured image"
+msgstr "Utiliser comme image en vedette"
+
+#: admin/class-wa-golfs-export.php:77
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: admin/class-wa-golfs-export.php:87
+msgid "Verified"
+msgstr "Vérifié"
+
+#: admin/class-wa-golfs-fields.php:245
+msgid "Video file"
+msgstr "Fichier vidéo"
+
+#: admin/class-wa-golfs-fields.php:249
+msgid "Video has to be *.mp4 well compressed format."
+msgstr "La vidéo doit être au format *.mp4 bien compressé."
+
+#: admin/class-wa-golfs-register.php:19
+msgid "View Competition"
+msgstr "Voir la compétition"
+
+#: admin/class-wa-golfs-taxonomy.php:22
+msgid "View Competition category"
+msgstr "Voir la catégorie de compétition"
+
+#: admin/class-wa-golfs-register.php:20
+msgid "View Competitions"
+msgstr "Voir les compétitions"
+
+#: admin/class-wa-golfs-register.php:121
+msgid "View Course"
+msgstr "Voir Parcours"
+
+#: admin/class-wa-golfs-register.php:122
+msgid "View Courses"
+msgstr "Voir Parcours"
+
+#: admin/class-wa-golfs-register.php:189
+msgid "View Testimonies"
+msgstr "Voir les témoignages"
+
+#: admin/class-wa-golfs-register.php:188
+msgid "View Testimony"
+msgstr "Voir le témoignage"
+
+#: admin/class-wa-golfs-fields.php:236
+msgid "Vimeo & YouTube video link"
+msgstr "Lien vidéo Vimeo & YouTube"
+
+#. Name of the plugin
+msgid "WA GOLFS Global functions"
+msgstr "Fonctions globales WA GOLFS"
+
+#: admin/class-wa-golfs-register.php:44
+msgid "wa-golfs"
+msgstr ""
+
+#. Author of the plugin
+msgid "Wilhem Arnoldy"
+msgstr "Wilhem Arnoldy"
+
+#: admin/class-wa-golfs-general.php:10
+msgid ""
+"© GOLFS —  Maintenance <a href=\"http://www.wilhemarnoldy.fr\" "
+"target=\"_blank\">Wilhem Arnoldy, www.wilhemarnoldy.fr</a>"
+msgstr ""
+"© GOLFS —  Maintenance <a href=\"http://www.wilhemarnoldy.fr\" "
+"target=\"_blank\">Wilhem Arnoldy, www.wilhemarnoldy.fr</a>"
+
+#: admin/class-wa-golfs-fields.php:31
+msgid "À venir"
+msgstr "À venir"

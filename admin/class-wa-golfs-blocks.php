@@ -6,6 +6,13 @@
  * @since    1.1.0
  */
 
+function add_custom_pagination_query_vars($vars) {
+	$vars[] = 'paged_upcoming';
+	$vars[] = 'paged_ended';
+	return $vars;
+}
+add_filter('query_vars', 'add_custom_pagination_query_vars');
+
 //**
 // Allow
 // */
@@ -501,6 +508,7 @@ function register_blocks( $meta_boxes ) {
 			// 		'<button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
 			// 	</div>';
 			// }
+
 			?>
 			<section id="<?= $id ?>" class="<?= $class ?> <?= $animation_class ?>" <?= $data ?> style="--background-color: var(--waff-action-3-lighten-3); --color: var(--waff-action-3-inverse);">
 				<div class="container-fluid" <?= $preview ? 'style="padding:3rem;"' : ''; ?>>
@@ -518,9 +526,11 @@ function register_blocks( $meta_boxes ) {
 
 									<div class="row row-cols-1 row-cols-md-1 g-4">
 										<?php
+										$paged_upcoming = (get_query_var('paged_upcoming')) ? get_query_var('paged_upcoming') : 1;
 										$args = array(
 											'post_type' => 'competitions',
 											'posts_per_page' => 3,
+											'paged' => $paged_upcoming,
 											'meta_query' => array(
 												array(
 													'key' => 'c_state',
@@ -531,16 +541,14 @@ function register_blocks( $meta_boxes ) {
 											'date_query' => array(
 												array(
 													'column' => 'post_date_gmt',
-													'after' => '1 year ago',
+													'year'   => date('Y'),
+													'month'  => date('n'),
+													'day'    => date('j'),
 												),
-												// array(
-												// 	'column' => 'post_modified_gmt',
-												// 	'after' => '1 month ago',
-												// ),
 											),		
 											'orderby' => 'meta_value',
 											'meta_key' => 'c_date',
-											'order' => 'DESC',
+											'order' => 'ASC',
 										);
 										$competition_query = new WP_Query( $args );
 										if ( $competition_query->have_posts() ) :
@@ -555,9 +563,43 @@ function register_blocks( $meta_boxes ) {
 												</div>
 												<?php
 											endwhile;
+											// Pagination
+											$big = 999999999; // need an unlikely integer
+											$pagination_links_upcoming = paginate_links( array(
+												'base'    => str_replace( $big, '%#%', esc_url( add_query_arg( 'paged_upcoming', $big ) ) ),
+												'format'  => '',
+												'current' => max( 1, $paged_upcoming ),
+												'total'   => $competition_query->max_num_pages,
+												'add_args' => array('paged_ended' => $paged_ended), // preserve other pagination in URL
+												'type'    => 'list',
+												'prev_text' => '&laquo;',
+												'next_text' => '&raquo;',
+											) );
+											if ( $pagination_links_upcoming ) {
+												// Add classes to <ul>
+												$pagination_links_upcoming = str_replace(
+													'<ul class=\'page-numbers\'>',
+													'<ul class="list-group list-group list-group-horizontal">',
+													$pagination_links_upcoming
+												);
+												echo '<nav class="mt-1 px-1" aria-label="Navigation des competitions à venir">' . $pagination_links_upcoming . '</nav>';
+											}
 											wp_reset_postdata();
 										endif;
 										?>
+									<style>
+										.page-numbers {
+											display: inline-block;
+											padding: 0.25rem 0.65rem;
+											margin: 0 0.25rem;
+											border-radius: 0.25rem;
+											background-color: var(--waff-action-3-inverse-trans-4);
+											color: var(--waff-action-3-inverse);
+										}
+										a.page-numbers {
+											background-color: var(--waff-action-3-inverse-trans-3);
+										}
+									</style>
 									</div>
 								</div>
 								<div class="col">
@@ -576,14 +618,31 @@ function register_blocks( $meta_boxes ) {
 							<div class="row row-cols-1 row-cols-md-2 g-4">
 
 								<?php
+
+								$paged_ended = (get_query_var('paged_ended')) ? get_query_var('paged_ended') : 1;
 								$args = array(
 									'post_type' => 'competitions',
 									'posts_per_page' => 6,
+									'paged' => $paged_ended,
 									'meta_query' => array(
+										'relation' => 'AND',
 										array(
 											'key' => 'c_state',
 											'value' => 'ended',
 											'compare' => '=',
+										),
+										array(
+											'relation' => 'OR',
+											array(
+												'key'     => 'c_competition_results_brut',
+												'value'   => '',
+												'compare' => '!=',
+											),
+											array(
+												'key'     => 'c_competition_results_net',
+												'value'   => '',
+												'compare' => '!=',
+											),
 										),
 									),
 									'date_query' => array(
@@ -591,10 +650,6 @@ function register_blocks( $meta_boxes ) {
 											'column' => 'post_date_gmt',
 											'after' => '1 year ago',
 										),
-										// array(
-										// 	'column' => 'post_modified_gmt',
-										// 	'after' => '1 month ago',
-										// ),
 									),		
 									'orderby' => 'meta_value',
 									'meta_key' => 'c_date',
@@ -613,9 +668,31 @@ function register_blocks( $meta_boxes ) {
 										</div>
 										<?php
 									endwhile;
+									// Pagination
+									$big = 999999999; // need an unlikely integer
+									$pagination_links_ended = paginate_links( array(
+										'base' => add_query_arg('paged_ended', '%#%'),
+										'format'  => '',
+										'current' => max( 1, $paged_ended ),
+										'total'   => $ended_competition_query->max_num_pages,
+										'add_args' => array('paged_upcoming' => $paged_upcoming), // preserve other pagination in URL
+										'type'    => 'list',
+										'prev_text' => '&laquo;',
+										'next_text' => '&raquo;'
+									) );
+									if ( $pagination_links_ended ) {
+										// Add classes to <ul>
+										$pagination_links_ended = str_replace(
+											'<ul class=\'page-numbers\'>',
+											'<ul class="list-group list-group list-group-horizontal">',
+											$pagination_links_ended
+										);
+										echo '<nav class="mt-1 px-1" aria-label="Navigation des résultats de compétitions">' . $pagination_links_ended . '</nav>';
+									}
 									wp_reset_postdata();
 								endif;
 								?>
+								
 								
 
 							</div>

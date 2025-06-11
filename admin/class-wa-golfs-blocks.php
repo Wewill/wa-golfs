@@ -20,11 +20,14 @@ add_filter('query_vars', 'add_custom_pagination_query_vars');
 // Allow custom blocks considering post_type 
 function allow_blocks() {
 	// Blocks 
-	add_filter( 'allowed_block_types_all', 'post_type_allowed_block_types', 10, 2 );
+	add_filter( 'allowed_block_types_all', 'post_type_allowed_block_types', 20, 2 );
 
 }
 
 function post_type_allowed_block_types( $allowed_blocks = array(), $editor_context ) {
+
+	// error_log( "PLUGIN post_type_allowed_block_types :: allowed_blocks :: " . print_r($allowed_blocks, true)  );
+	// error_log( "PLUGIN post_type_allowed_block_types :: editor_context :: " . print_r($editor_context, true)  );
 
 	// competition
 	if ( isset( $editor_context->post ) && $editor_context->post->post_type === 'competition' ) {

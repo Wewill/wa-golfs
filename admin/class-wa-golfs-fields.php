@@ -56,7 +56,7 @@ function competitions_fields( $meta_boxes ) {
                 'force_delete' => true,
                 'max_file_uploads' => 1,
                 'upload_dir' => ABSPATH . '/wp-content/uploads/competitions/',
-                'mime_type' => ['text/csv'],
+                'mime_type' => 'text/csv',
             ],
             [
                 'name' => __( 'Preview', 'wa-golfs' ),
@@ -72,7 +72,7 @@ function competitions_fields( $meta_boxes ) {
                 'force_delete' => true,
                 'max_file_uploads'  => 1,
                 'upload_dir' => ABSPATH . '/wp-content/uploads/competitions/',
-                'mime_type' => ['text/csv'],
+                'mime_type' => 'text/csv',
             ],
             [
                 'name' => __( 'Preview', 'wa-golfs' ),
@@ -87,7 +87,7 @@ function competitions_fields( $meta_boxes ) {
                 'force_delete' => true,
                 'max_file_uploads'  => 1,
                 'upload_dir' => ABSPATH . '/wp-content/uploads/competitions/',
-                'mime_type' => ['text/csv'],
+                'mime_type' => 'text/csv',
             ],
             [
                 'name' => __( 'Preview', 'wa-golfs' ),

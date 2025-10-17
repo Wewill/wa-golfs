@@ -963,6 +963,9 @@ function register_blocks( $meta_boxes ) {
 						center: "",
 						right: "title",
 					}, // Hide the toolbar
+					buttonText: {
+						today: 'Aujourd\'hui' // Traduction du bouton today
+					},
 					height: 'auto', // Adjust the height to display the full calendar
 					contentHeight: 'auto', // Ensure the content height is auto
 					dayHeaders: false, // Hide days

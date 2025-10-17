@@ -850,12 +850,12 @@ function register_blocks( $meta_boxes ) {
 								<h6 class="headflat text-action-2" id="competitions-results">Les résultats</h6>
 							</hgroup>
 
-							<div class="row row-cols-1 row-cols-md-2 g-4">
+							<div class="row row-cols-1 row-cols-md-3 g-4">
 								<?php
 								$paged_ended = (get_query_var('paged_ended')) ? get_query_var('paged_ended') : 1;
 								$args = array(
 									'post_type' => 'competitions',
-									'posts_per_page' => 6,
+									'posts_per_page' => 9, //
 									'paged' => $paged_ended,
 									'meta_query' => array(
 										'relation' => 'AND',

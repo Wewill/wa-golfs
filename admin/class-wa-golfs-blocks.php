@@ -956,11 +956,13 @@ function register_blocks( $meta_boxes ) {
 				var calendar = new FullCalendar.Calendar(calendarEl, {
 					initialView: 'dayGridMonth',
 					locale: "fr", // Set the locale to French
+					// Weeks starting on Monday
+					firstDay: 1,
 					headerToolbar: coDisplay === 'featured' ? false : {
-      left: "prev,next today",
-      center: "",
-      right: "title",
-    }, // Hide the toolbar
+						left: "prev,next today",
+						center: "",
+						right: "title",
+					}, // Hide the toolbar
 					height: 'auto', // Adjust the height to display the full calendar
 					contentHeight: 'auto', // Ensure the content height is auto
 					dayHeaders: false, // Hide days

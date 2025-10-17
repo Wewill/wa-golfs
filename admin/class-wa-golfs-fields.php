@@ -39,6 +39,13 @@ function competitions_fields( $meta_boxes ) {
                 'type' => 'datetime',
                 'desc' => __( 'Fill in the date & time of competition here.', 'wa-golfs' ),
             ],
+            // Ajouter une case à cocher "Fermeture des inscriptions" 
+            [
+                'name' => __( 'Close Registration', 'wa-golfs' ),
+                'id'   => $prefix . 'close_registration',
+                'type' => 'checkbox',
+                'desc' => __( 'Close registration for some competition. e.q. : Coupe HDF, ...', 'wa-golfs' ),
+            ],
             [
                 'type' => 'heading',
                 'name' => __( 'FF Golf', 'wa-golfs' ),

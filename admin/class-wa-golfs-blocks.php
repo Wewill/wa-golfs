@@ -531,27 +531,28 @@ function register_blocks( $meta_boxes ) {
 										<?php
 										$paged_upcoming = (get_query_var('paged_upcoming')) ? get_query_var('paged_upcoming') : 1;
 										$args = array(
-											'post_type' => 'competitions',
+											'post_type'      => 'competitions',
 											'posts_per_page' => 3,
-											'paged' => $paged_upcoming,
-											'meta_query' => array(
+											'meta_query'     => array(
+												'relation' => 'AND',
 												array(
-													'key' => 'c_state',
-													'value' => array('pending', 'current'),
+													'key'     => 'c_state',
+													'value'   => array('pending', 'current'),
 													'compare' => 'IN',
 												),
-											),
-											'date_query' => array(
 												array(
-													'column' => 'post_date_gmt',
-													'year'   => date('Y'),
-													'month'  => date('n'),
-													'day'    => date('j'),
+													'key'     => 'c_date',
+													'value'   => array(
+														date('Y-m-d'), // aujourd’hui
+														date('Y-m-d', strtotime('+1 month')) // +1 mois
+													),
+													'compare' => 'BETWEEN',
+													'type'    => 'DATE',
 												),
-											),		
-											'orderby' => 'meta_value',
+											),
+											'orderby'  => 'meta_value',
 											'meta_key' => 'c_date',
-											'order' => 'ASC',
+											'order'    => 'ASC',
 										);
 										$competition_query = new WP_Query( $args );
 										if ( $competition_query->have_posts() ) :
@@ -697,7 +698,7 @@ function register_blocks( $meta_boxes ) {
 
 					<div class="row mt-4 mb-0" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 
-						<div class="col-12 col-md-8" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
+						<div class="col" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
 							<h2><?= esc_html__( 'Toutes les compétitions', 'wa-golfs' ); ?></h2>
 							<p class="text-muted"><?= esc_html__( 'Toutes les compétitions passées et à venir.', 'wa-golfs' ); ?></p>
 
@@ -714,7 +715,7 @@ function register_blocks( $meta_boxes ) {
 							</nav>
 						</div>
 
-						<div class="col-12 col-md-4">
+						<div class="col-4">
 							<div id="competitions-calendar"></div>
 						</div>		
 
@@ -731,27 +732,30 @@ function register_blocks( $meta_boxes ) {
 								<?php
 								$paged_upcoming = (get_query_var('paged_upcoming')) ? get_query_var('paged_upcoming') : 1;
 								$args = array(
-									'post_type' => 'competitions',
+									'post_type'      => 'competitions',
 									'posts_per_page' => 20,
 									'paged' => $paged_upcoming,
-									'meta_query' => array(
+									'meta_query'     => array(
+										'relation' => 'AND',
 										array(
-											'key' => 'c_state',
-											'value' => array('pending', 'current'),
+											'key'     => 'c_state',
+											'value'   => array('pending', 'current'),
 											'compare' => 'IN',
 										),
-									),
-									'date_query' => array(
 										array(
-											'column' => 'post_date_gmt',
-											'year'   => date('Y'),
-											'month'  => date('n'),
-											'day'    => date('j'),
+											'key'     => 'c_date',
+											'value'   => array(
+												date('Y-m-d'), // aujourd’hui
+												date('Y-m-d', strtotime('+1 year')) // +1 mois
+											),
+											'compare' => 'BETWEEN',
+											'type'    => 'DATE',
 										),
-									),		
-									'orderby' => 'meta_value',
+									),
+									'orderby'  => 'meta_value',
 									'meta_key' => 'c_date',
-									'order' => 'ASC',
+									'order'    => 'ASC',
+
 								);
 								$competition_query = new WP_Query( $args );
 								if ( $competition_query->have_posts() ) :
@@ -790,7 +794,7 @@ function register_blocks( $meta_boxes ) {
 										);
 
 									?>
-									<div class="col mt-0">
+									<div class="col mt-0 mb-4">
 										<div class="card border-0 p-4 h-100" style="background-color:var(--waff-action-3-lighten-3);">
 											<div class="d-flex g-0 align-items-center">
 												<div class="w-150-px order-first">
@@ -845,7 +849,7 @@ function register_blocks( $meta_boxes ) {
 							</div>
 						</div>
 
-						<div class="bg-color-layout --f-w-gutter pt-4 pb-4" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
+						<div class="bg-color-layout f-w-gutter pt-4 pb-4" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-action-2" id="competitions-results">Les résultats</h6>
 							</hgroup>

@@ -635,13 +635,22 @@ function register_blocks( $meta_boxes ) {
 												'compare' => '!=',
 											),
 										),
-									),
-									'date_query' => array(
 										array(
-											'column' => 'post_date_gmt',
-											'after' => '1 year ago',
+											'key'     => 'c_date',
+											'value'   => array(
+												date('Y-m-d', strtotime('-1 year')), // il y a 1 an
+												date('Y-m-d') // aujourd'hui
+											),
+											'compare' => 'BETWEEN',
+											'type'    => 'DATE',
 										),
-									),		
+									),
+									// 'date_query' => array(
+									// 	array(
+									// 		'column' => 'post_date_gmt',
+									// 		'after' => '1 year ago',
+									// 	),
+									// ),		
 									'orderby' => 'meta_value',
 									'meta_key' => 'c_date',
 									'order' => 'DESC',
@@ -746,7 +755,7 @@ function register_blocks( $meta_boxes ) {
 											'key'     => 'c_date',
 											'value'   => array(
 												date('Y-m-d'), // aujourd’hui
-												date('Y-m-d', strtotime('+1 year')) // +1 mois
+												date('Y-m-d', strtotime('+1 year')) // +1 an
 											),
 											'compare' => 'BETWEEN',
 											'type'    => 'DATE',
@@ -881,13 +890,22 @@ function register_blocks( $meta_boxes ) {
 												'compare' => '!=',
 											),
 										),
-									),
-									'date_query' => array(
 										array(
-											'column' => 'post_date_gmt',
-											'after' => '1 year ago',
+											'key'     => 'c_date',
+											'value'   => array(
+												date('Y-m-d', strtotime('-1 year')), // il y a 1 an
+												date('Y-m-d') // aujourd'hui
+											),
+											'compare' => 'BETWEEN',
+											'type'    => 'DATE',
 										),
-									),		
+									),
+									// 'date_query' => array(
+									// 	array(
+									// 		'column' => 'post_date_gmt',
+									// 		'after' => '1 year ago',
+									// 	),
+									// ),		
 									'orderby' => 'meta_value',
 									'meta_key' => 'c_date',
 									'order' => 'DESC',
@@ -979,12 +997,23 @@ function register_blocks( $meta_boxes ) {
 						$args = array(
 							'post_type' => 'competitions',
 							'posts_per_page' => -1,
-							'date_query' => array(
+							'meta_query' => array(
 								array(
-									'column' => 'post_date_gmt',
-									'after' => '1 year ago',
+									'key'     => 'c_date',
+									'value'   => array(
+										date('Y-m-d', strtotime('-1 year')), // il y a 1 an
+										date('Y-m-d') // aujourd'hui
+									),
+									'compare' => 'BETWEEN',
+									'type'    => 'DATE',
 								),
 							),
+							// 'date_query' => array(
+							// 	array(
+							// 		'column' => 'post_date_gmt',
+							// 		'after' => '1 year ago',
+							// 	),
+							// ),
 						);
 						$competition_query = new WP_Query( $args );
 						if ( $competition_query->have_posts() ) :

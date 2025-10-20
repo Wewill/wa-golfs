@@ -697,7 +697,7 @@ function register_blocks( $meta_boxes ) {
 
 					<div class="row mt-4 mb-0" <?= $preview ? 'style="display:flex;"' : ''; ?>>
 
-						<div class="col" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
+						<div class="col-12 col-md-8" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
 							<h2><?= esc_html__( 'Toutes les compétitions', 'wa-golfs' ); ?></h2>
 							<p class="text-muted"><?= esc_html__( 'Toutes les compétitions passées et à venir.', 'wa-golfs' ); ?></p>
 
@@ -714,7 +714,7 @@ function register_blocks( $meta_boxes ) {
 							</nav>
 						</div>
 
-						<div class="col-4">
+						<div class="col-12 col-md-4">
 							<div id="competitions-calendar"></div>
 						</div>		
 
@@ -845,7 +845,7 @@ function register_blocks( $meta_boxes ) {
 							</div>
 						</div>
 
-						<div class="bg-color-layout f-w-gutter pt-4 pb-4" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
+						<div class="bg-color-layout --f-w-gutter pt-4 pb-4" <?= $preview ? 'style="flex:1;margin-left:1rem;"' : ''; ?>>
 							<hgroup class="d-flex flex-row align-items-center justify-content-between mb-5" <?= $preview ? 'style="display:flex;justify-content: space-between;"' : ''; ?>>
 								<h6 class="headflat text-action-2" id="competitions-results">Les résultats</h6>
 							</hgroup>

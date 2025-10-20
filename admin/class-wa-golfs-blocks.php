@@ -569,6 +569,7 @@ function register_blocks( $meta_boxes ) {
 											endwhile;
 											// Pagination
 											$big = 999999999; // need an unlikely integer
+											$display_pagination_links_upcoming = false;
 											$pagination_links_upcoming = paginate_links( array(
 												'base'    => str_replace( $big, '%#%', esc_url( add_query_arg( 'paged_upcoming', $big ) ) ),
 												'format'  => '',
@@ -579,7 +580,7 @@ function register_blocks( $meta_boxes ) {
 												'prev_text' => '&laquo;',
 												'next_text' => '&raquo;',
 											) );
-											if ( $pagination_links_upcoming ) {
+											if ( $pagination_links_upcoming && $display_pagination_links_upcoming ) {
 												// Add classes to <ul>
 												$pagination_links_upcoming = str_replace(
 													'<ul class=\'page-numbers\'>',
@@ -670,6 +671,7 @@ function register_blocks( $meta_boxes ) {
 									endwhile;
 									// Pagination
 									$big = 999999999; // need an unlikely integer
+									$display_pagination_links_ended = false;
 									$pagination_links_ended = paginate_links( array(
 										'base' => add_query_arg('paged_ended', '%#%'),
 										'format'  => '',
@@ -680,7 +682,7 @@ function register_blocks( $meta_boxes ) {
 										'prev_text' => '&laquo;',
 										'next_text' => '&raquo;'
 									) );
-									if ( $pagination_links_ended ) {
+									if ( $pagination_links_ended && $display_pagination_links_ended ) {
 										// Add classes to <ul>
 										$pagination_links_ended = str_replace(
 											'<ul class=\'page-numbers\'>',
@@ -709,7 +711,7 @@ function register_blocks( $meta_boxes ) {
 
 						<div class="col-12 col-md-8" <?= $preview ? 'style="flex:1;margin-right:1rem;"' : ''; ?>>
 							<h2><?= esc_html__( 'Toutes les compétitions', 'wa-golfs' ); ?></h2>
-							<p class="text-muted"><?= esc_html__( 'Toutes les compétitions passées et à venir.', 'wa-golfs' ); ?></p>
+							<p class="text-muted"><?= esc_html__( 'Découvrez l\'ensemble des compétitions de notre club, des tournois emblématiques d’hier aux rendez-vous à venir. Revivez les moments forts en consultant les résultats des compétitions précédentes et préparez-vous, en vous inscrivant aux compétitions à venir, à vivre de nouvelles émotions sur nos greens..', 'wa-golfs' ); ?></p>
 
 							<!-- Anchor menu -->
 							<nav class="mt-4">
@@ -833,6 +835,7 @@ function register_blocks( $meta_boxes ) {
 									endwhile;
 									// Pagination
 									$big = 999999999; // need an unlikely integer
+									$display_pagination_links_upcoming = true;
 									$pagination_links_upcoming = paginate_links( array(
 										'base'    => str_replace( $big, '%#%', esc_url( add_query_arg( 'paged_upcoming', $big ) ) ),
 										'format'  => '',
@@ -843,7 +846,7 @@ function register_blocks( $meta_boxes ) {
 										'prev_text' => '&laquo;',
 										'next_text' => '&raquo;',
 									) );
-									if ( $pagination_links_upcoming ) {
+									if ( $pagination_links_upcoming && $display_pagination_links_upcoming ) {
 										// Add classes to <ul>
 										$pagination_links_upcoming = str_replace(
 											'<ul class=\'page-numbers\'>',
@@ -925,6 +928,7 @@ function register_blocks( $meta_boxes ) {
 									endwhile;
 									// Pagination
 									$big = 999999999; // need an unlikely integer
+									$display_pagination_links_ended = true;
 									$pagination_links_ended = paginate_links( array(
 										'base' => add_query_arg('paged_ended', '%#%'),
 										'format'  => '',
@@ -935,7 +939,7 @@ function register_blocks( $meta_boxes ) {
 										'prev_text' => '&laquo;',
 										'next_text' => '&raquo;'
 									) );
-									if ( $pagination_links_ended ) {
+									if ( $pagination_links_ended && $display_pagination_links_ended ) {
 										// Add classes to <ul>
 										$pagination_links_ended = str_replace(
 											'<ul class=\'page-numbers\'>',

@@ -140,3 +140,11 @@ add_action('pre_get_posts', function($query) {
         $query->set('order', 'ASC');
     }
 });
+
+// 5. Order course posts by menu_order on the front-end archive
+add_action('pre_get_posts', function($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('course')) {
+        $query->set('orderby', 'menu_order');
+        $query->set('order', 'ASC');
+    }
+});

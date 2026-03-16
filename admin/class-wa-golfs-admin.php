@@ -211,6 +211,8 @@ class Wa_Golfs_Admin {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-general.php';
 		// Adding metabox io custom post type 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-register.php';
+		// Adds custom order for * post type 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-menuorder.php';		
 		// Adding metabox io custom taxonomy 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wa-golfs-taxonomy.php';
 		// Adding metabox io custom fields 

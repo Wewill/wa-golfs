@@ -5,20 +5,20 @@
  * @since    1.2
  */
 
-// 1. Add a sortable column to the course post type admin list
-// Use for debug purposes
-add_filter('manage_course_posts_columns', function($columns) {
-    $columns = array_slice($columns, 0, 1, true) +
-        ['order' => __('Order', 'waff')] +
-        array_slice($columns, 1, null, true);
-    return $columns;
-});
+// // 1. Add a sortable column to the course post type admin list
+// // Use for debug purposes
+// add_filter('manage_course_posts_columns', function($columns) {
+//     $columns = array_slice($columns, 0, 1, true) +
+//         ['order' => __('Order', 'waff')] +
+//         array_slice($columns, 1, null, true);
+//     return $columns;
+// });
 
-add_action('manage_course_posts_custom_column', function($column, $post_id) {
-    if ($column === 'order') {
-        echo (int) get_post_field('menu_order', $post_id);
-    }
-}, 10, 2);
+// add_action('manage_course_posts_custom_column', function($column, $post_id) {
+//     if ($column === 'order') {
+//         echo (int) get_post_field('menu_order', $post_id);
+//     }
+// }, 10, 2);
 
 // 2. Enqueue vanilla JS for drag-and-drop on edit.php for course
 add_action('admin_enqueue_scripts', function($hook) {
